@@ -12,6 +12,8 @@ from lib.content import (
     filter_food_items,
     get_all_attributes,
     get_all_food_items,
+    get_attribute_categories,
+    get_attributes_for_category,
     get_food_groups,
     get_food_reference_table_rows,
     get_food_subgroups,
@@ -123,11 +125,22 @@ def page_food():
         }.get(s, s.upper()),
     )
 
-    selected_attrs = st.multiselect(
-        "Filter by attributes (such as starches, root veggies, tart, savory, allium, cruciferous...)",
-        options=all_attrs,
-        default=[],
-        help="Select one or more attributes to narrow down matching foods.",
+    # Organized attribute filtering by category
+    attr_categories = ["All Categories"] + get_attribute_categories()
+    a_col1, a_col2 = st.columns([1, 2])
+    selected_attr_cat = a_col1.selectbox("Attribute category", attr_categories)
+
+    category_attrs = get_attributes_for_category(selected_attr_cat)
+    # Ensure active selections stay in options so category changes don't drop them
+    current_selected = st.session_state.get("active_attrs", [])
+    combined_options = sorted(set(category_attrs) | set(current_selected))
+
+    selected_attrs = a_col2.multiselect(
+        "Filter by attribute",
+        options=combined_options,
+        default=current_selected,
+        key="active_attrs",
+        help="Select attributes (e.g. starches, root veggies, tart, savory) to narrow matching foods.",
     )
 
     matched_items = filter_food_items(
@@ -150,7 +163,7 @@ def page_food():
         tab_grouped, tab_dir = st.tabs(["Grouped Table", "Ingredient Directory"])
 
         with tab_grouped:
-            rows = get_food_reference_table_rows(matched_items, include_attributes=True)
+            rows = get_food_reference_table_rows(matched_items, include_attributes=False)
             st.table(rows)
 
         with tab_dir:

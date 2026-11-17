@@ -8,6 +8,71 @@ import yaml
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 
+ATTRIBUTE_TAXONOMY: dict[str, list[str]] = {
+    "Starches & Veggie Types": [
+        "starches",
+        "root veggies",
+        "leafy green",
+        "cruciferous",
+        "allium",
+        "squash",
+        "nightshades",
+        "legumes",
+        "fungi",
+        "herbal",
+    ],
+    "Fruits": [
+        "berry",
+        "citrus",
+        "melon",
+        "tropical",
+        "pome fruit",
+        "stone fruit",
+    ],
+    "Flavor Profiles": [
+        "savory",
+        "tart",
+        "sweet",
+        "earthy",
+        "peppery",
+        "bitter",
+        "aromatic",
+        "pungent",
+        "mild",
+    ],
+    "Proteins & Dairy": [
+        "poultry",
+        "red meat",
+        "fish",
+        "shellfish",
+        "organ meat",
+        "eggs",
+        "dairy",
+    ],
+    "Grains, Nuts & Seeds": [
+        "grain",
+        "nut",
+        "seed",
+        "flour",
+        "gluten-free",
+        "gluten",
+    ],
+    "Fats, Seasonings & Extras": [
+        "fat",
+        "oil",
+        "spice",
+        "sweetener",
+    ],
+    "Histamine & Reactions": [
+        "high-histamine",
+        "histamine-liberator",
+        "DAO-blocker",
+        "fermented",
+        "cured",
+        "caffeinated",
+    ],
+}
+
 
 def _load(name: str) -> Any:
     path = DATA / name
@@ -42,7 +107,6 @@ def get_all_food_items(data: list[dict] | None = None) -> list[dict]:
         group_name = g.get("group", "")
         for sg in g.get("subgroups", []):
             subgroup_name = sg.get("name", "")
-            # Items defined under 'items' list
             for item in sg.get("items", []):
                 items.append(
                     {
@@ -54,7 +118,6 @@ def get_all_food_items(data: list[dict] | None = None) -> list[dict]:
                         "notes": item.get("notes", ""),
                     }
                 )
-            # Support any legacy or alternative 'safer'/'caution'/'avoid' sub-keys
             for status in ("safer", "caution", "avoid"):
                 for entry in sg.get(status, []):
                     if isinstance(entry, dict):
@@ -106,6 +169,21 @@ def get_food_subgroups(group: str | None = None, data: list[dict] | None = None)
     return subgroups
 
 
+def get_attribute_categories() -> list[str]:
+    """Return high-level attribute category names."""
+    return list(ATTRIBUTE_TAXONOMY.keys())
+
+
+def get_attributes_for_category(category: str | None = None) -> list[str]:
+    """Return attribute tags for a given category, or all curated attributes."""
+    if not category or category == "All Categories":
+        all_attrs: set[str] = set()
+        for cat_list in ATTRIBUTE_TAXONOMY.values():
+            all_attrs.update(cat_list)
+        return sorted(all_attrs)
+    return ATTRIBUTE_TAXONOMY.get(category, [])
+
+
 def get_all_attributes(data: list[dict] | None = None) -> list[str]:
     """Return a sorted list of all unique attribute tags across all foods."""
     items = get_all_food_items(data)
@@ -115,8 +193,8 @@ def get_all_attributes(data: list[dict] | None = None) -> list[str]:
     return sorted(attrs)
 
 
-def format_food_item(it: dict, include_attributes: bool = True) -> str:
-    """Format an ingredient into a string with attribute tags and optional notes."""
+def format_food_item(it: dict, include_attributes: bool = False) -> str:
+    """Format an ingredient into a string with optional attributes and notes."""
     name = it["name"]
     parts: list[str] = [name]
     if include_attributes and it.get("attributes"):
@@ -166,7 +244,7 @@ def filter_food_items(
 
 def get_food_reference_table_rows(
     items: list[dict] | None = None,
-    include_attributes: bool = True,
+    include_attributes: bool = False,
 ) -> list[dict]:
     """Return grouped table rows formatted for Streamlit table/dataframe display."""
     if items is None:
@@ -186,9 +264,9 @@ def get_food_reference_table_rows(
             {
                 "Food group": grp,
                 "Subgroup": subg,
-                "SAFER (usually well tolerated)": "; ".join(buckets["safer"]) if buckets["safer"] else "—",
-                "CAUTION (varies; test slowly)": "; ".join(buckets["caution"]) if buckets["caution"] else "—",
-                "AVOID (commonly problematic)": "; ".join(buckets["avoid"]) if buckets["avoid"] else "—",
+                "SAFER (usually well tolerated)": ", ".join(buckets["safer"]) if buckets["safer"] else "—",
+                "CAUTION (varies; test slowly)": ", ".join(buckets["caution"]) if buckets["caution"] else "—",
+                "AVOID (commonly problematic)": ", ".join(buckets["avoid"]) if buckets["avoid"] else "—",
             }
         )
     return rows

@@ -1,885 +1,1387 @@
-# Food reference table with groups, subgroups, safety status, attributes, and notes.
-# Edit freely. Verify each row against SIGHI before publishing.
-
 - group: Meat and fish
   subgroups:
-    - name: Poultry & Fowl
-      items:
-        - name: Chicken
-          status: safer
-          attributes: [poultry, lean meat, savory, protein]
-          notes: Fresh or frozen un-aged
-        - name: Turkey
-          status: safer
-          attributes: [poultry, lean meat, savory, protein]
-          notes: Fresh or frozen un-aged
-        - name: Duck
-          status: safer
-          attributes: [poultry, game, rich, savory, protein]
-          notes: Fresh or frozen un-aged
-        - name: Goose
-          status: safer
-          attributes: [poultry, game, rich, savory, protein]
-          notes: Fresh or frozen un-aged
-        - name: Quail
-          status: safer
-          attributes: [poultry, game, savory, protein]
-          notes: Fresh or frozen un-aged
-
-    - name: Red Meat & Game
-      items:
-        - name: Beef
-          status: safer
-          attributes: [red meat, savory, protein]
-          notes: Fresh or frozen un-aged
-        - name: Lamb
-          status: safer
-          attributes: [red meat, savory, protein]
-          notes: Fresh or frozen un-aged
-        - name: Pork
-          status: safer
-          attributes: [red meat, savory, protein]
-          notes: Fresh or frozen un-aged
-        - name: Bison
-          status: safer
-          attributes: [red meat, game, lean meat, savory, protein]
-          notes: Fresh or frozen un-aged
-        - name: Ostrich
-          status: safer
-          attributes: [red meat, game, lean meat, savory, protein]
-          notes: Fresh or frozen un-aged
-        - name: Rabbit
-          status: safer
-          attributes: [game, lean meat, savory, protein]
-          notes: Fresh or frozen un-aged
-
-    - name: Organ Meats
-      items:
-        - name: Liver
-          status: safer
-          attributes: [organ meat, nutrient-dense, savory, protein]
-          notes: Fresh or frozen un-aged
-
-    - name: Fish & Seafood
-      items:
-        - name: Salmon
-          status: safer
-          attributes: [fish, seafood, oily fish, savory, protein]
-          notes: Gutted and frozen within minutes of catch
-        - name: Fresh fish (uncooked after purchase day)
-          status: caution
-          attributes: [fish, seafood, protein]
-          notes: Fresh fish not cooked the day it is bought
-        - name: Canned fish
-          status: avoid
-          attributes: [fish, seafood, high-histamine, preserved]
-          notes: Tuna, sardines, mackerel, etc.
-        - name: Smoked fish
-          status: avoid
-          attributes: [fish, seafood, smoked, cured, high-histamine]
-          notes: Smoked salmon, kippers, trout, etc.
-        - name: Shellfish
-          status: avoid
-          attributes: [shellfish, seafood, histamine-liberator, high-histamine]
-          notes: Shrimp, crab, lobster, mussels, oysters, clams
-
-    - name: Processed & Leftover Meats
-      items:
-        - name: Leftover cooked meat
-          status: caution
-          attributes: [cooked meat, leftovers]
-          notes: Histamine accumulates rapidly in refrigerated cooked meat; freeze immediately
-        - name: Cured, smoked, or deli meats
-          status: avoid
-          attributes: [cured, smoked, processed meat, savory, high-sodium, high-histamine]
-          notes: Salami, bacon, ham, hot dogs, cold cuts
-
+  - name: Poultry & Fowl
+    items:
+    - name: Chicken
+      status: safer
+      attributes:
+      - poultry
+      - savory
+      notes: Fresh or frozen un-aged
+    - name: Turkey
+      status: safer
+      attributes:
+      - poultry
+      - savory
+      notes: Fresh or frozen un-aged
+    - name: Duck
+      status: safer
+      attributes:
+      - poultry
+      - savory
+      notes: Fresh or frozen un-aged
+    - name: Goose
+      status: safer
+      attributes:
+      - poultry
+      - savory
+      notes: Fresh or frozen un-aged
+    - name: Quail
+      status: safer
+      attributes:
+      - poultry
+      - savory
+      notes: Fresh or frozen un-aged
+  - name: Red Meat & Game
+    items:
+    - name: Beef
+      status: safer
+      attributes:
+      - red meat
+      - savory
+      notes: Fresh or frozen un-aged
+    - name: Lamb
+      status: safer
+      attributes:
+      - red meat
+      - savory
+      notes: Fresh or frozen un-aged
+    - name: Pork
+      status: safer
+      attributes:
+      - red meat
+      - savory
+      notes: Fresh or frozen un-aged
+    - name: Bison
+      status: safer
+      attributes:
+      - red meat
+      - savory
+      notes: Fresh or frozen un-aged
+    - name: Ostrich
+      status: safer
+      attributes:
+      - red meat
+      - savory
+      notes: Fresh or frozen un-aged
+    - name: Rabbit
+      status: safer
+      attributes:
+      - savory
+      notes: Fresh or frozen un-aged
+  - name: Organ Meats
+    items:
+    - name: Liver
+      status: safer
+      attributes:
+      - organ meat
+      - savory
+      notes: Fresh or frozen un-aged
+  - name: Fish & Seafood
+    items:
+    - name: Salmon
+      status: safer
+      attributes:
+      - fish
+      - savory
+      notes: Gutted and frozen within minutes of catch
+    - name: Fresh fish (uncooked after purchase day)
+      status: caution
+      attributes:
+      - fish
+      notes: Fresh fish not cooked the day it is bought
+    - name: Canned fish
+      status: avoid
+      attributes:
+      - fish
+      - high-histamine
+      notes: Tuna, sardines, mackerel, etc.
+    - name: Smoked fish
+      status: avoid
+      attributes:
+      - fish
+      - cured
+      - high-histamine
+      notes: Smoked salmon, kippers, trout, etc.
+    - name: Shellfish
+      status: avoid
+      attributes:
+      - shellfish
+      - histamine-liberator
+      - high-histamine
+      notes: Shrimp, crab, lobster, mussels, oysters, clams
+  - name: Processed & Leftover Meats
+    items:
+    - name: Leftover cooked meat
+      status: caution
+      attributes:
+      - savory
+      notes: Histamine accumulates rapidly in refrigerated cooked meat; freeze immediately
+    - name: Cured, smoked, or deli meats
+      status: avoid
+      attributes:
+      - cured
+      - savory
+      - high-histamine
+      notes: Salami, bacon, ham, hot dogs, cold cuts
 - group: Eggs and dairy
   subgroups:
-    - name: Eggs
-      items:
-        - name: Eggs (whole)
-          status: safer
-          attributes: [eggs, protein, fat]
-          notes: If tolerated; yolks are generally safer than whites
-        - name: Egg whites
-          status: caution
-          attributes: [eggs, protein, histamine-liberator]
-          notes: Egg whites can act as histamine liberators in sensitive individuals
-
-    - name: Dairy Fats & Butters
-      items:
-        - name: Butter
-          status: safer
-          attributes: [dairy, fat, savory, rich]
-        - name: Grass-fed butter
-          status: safer
-          attributes: [dairy, fat, savory, rich]
-        - name: Ghee (grass-fed)
-          status: safer
-          attributes: [dairy, fat, savory, rich, nutty]
-          notes: Clarified butter; very low lactose and casein
-
-    - name: Fresh Cheeses
-      items:
-        - name: Fresh cream cheese
-          status: safer
-          attributes: [dairy, fresh cheese, creamy, mild]
-          notes: Uncultured/fresh, not aged
-        - name: Fresh mozzarella
-          status: safer
-          attributes: [dairy, fresh cheese, creamy, mild]
-          notes: Fresh in water, un-aged
-        - name: Ricotta
-          status: safer
-          attributes: [dairy, fresh cheese, creamy, sweet]
-          notes: Fresh un-aged whey cheese
-
-    - name: Milks
-      items:
-        - name: A2 cow milk
-          status: safer
-          attributes: [dairy, milk, beverage, creamy]
-          notes: Better tolerated than conventional A1 cow milk
-        - name: Goat milk
-          status: safer
-          attributes: [dairy, milk, beverage, creamy]
-        - name: Sheep milk
-          status: safer
-          attributes: [dairy, milk, beverage, rich]
-        - name: Milk (conventional cow milk)
-          status: caution
-          attributes: [dairy, milk, beverage]
-          notes: Conventional A1 milk; varies by person
-
-    - name: Fermented & Aged Dairy
-      items:
-        - name: Yogurt
-          status: caution
-          attributes: [dairy, fermented, tart, probiotic]
-          notes: Fermented product; histamine levels depend on culture strains
-        - name: Aged cheeses
-          status: avoid
-          attributes: [dairy, aged cheese, fermented, savory, pungent, high-histamine]
-          notes: Cheddar, parmesan, blue cheese, gouda, swiss; high histamine from microbial aging
-        - name: Kefir
-          status: avoid
-          attributes: [dairy, fermented, tart, probiotic, beverage, high-histamine]
-          notes: Fermented milk drink rich in histamine and yeasts
-        - name: General unverified dairy
-          status: avoid
-          attributes: [dairy, processed]
-          notes: General dairy not sourced as grass-fed/pasture-raised where specified
-
+  - name: Eggs
+    items:
+    - name: Eggs (whole)
+      status: safer
+      attributes:
+      - eggs
+      - fat
+      notes: If tolerated; yolks are generally safer than whites
+    - name: Egg whites
+      status: caution
+      attributes:
+      - eggs
+      - histamine-liberator
+      notes: Egg whites can act as histamine liberators in sensitive individuals
+  - name: Dairy Fats & Butters
+    items:
+    - name: Butter
+      status: safer
+      attributes:
+      - dairy
+      - fat
+      - savory
+    - name: Grass-fed butter
+      status: safer
+      attributes:
+      - dairy
+      - fat
+      - savory
+    - name: Ghee (grass-fed)
+      status: safer
+      attributes:
+      - dairy
+      - fat
+      - savory
+      notes: Clarified butter; very low lactose and casein
+  - name: Fresh Cheeses
+    items:
+    - name: Fresh cream cheese
+      status: safer
+      attributes:
+      - dairy
+      - mild
+      notes: Uncultured/fresh, not aged
+    - name: Fresh mozzarella
+      status: safer
+      attributes:
+      - dairy
+      - mild
+      notes: Fresh in water, un-aged
+    - name: Ricotta
+      status: safer
+      attributes:
+      - dairy
+      - sweet
+      notes: Fresh un-aged whey cheese
+  - name: Milks
+    items:
+    - name: A2 cow milk
+      status: safer
+      attributes:
+      - dairy
+      notes: Better tolerated than conventional A1 cow milk
+    - name: Goat milk
+      status: safer
+      attributes:
+      - dairy
+    - name: Sheep milk
+      status: safer
+      attributes:
+      - dairy
+    - name: Milk (conventional cow milk)
+      status: caution
+      attributes:
+      - dairy
+      notes: Conventional A1 milk; varies by person
+  - name: Fermented & Aged Dairy
+    items:
+    - name: Yogurt
+      status: caution
+      attributes:
+      - dairy
+      - fermented
+      - tart
+      notes: Fermented product; histamine levels depend on culture strains
+    - name: Aged cheeses
+      status: avoid
+      attributes:
+      - dairy
+      - fermented
+      - savory
+      - pungent
+      - high-histamine
+      notes: Cheddar, parmesan, blue cheese, gouda, swiss; high histamine from microbial aging
+    - name: Kefir
+      status: avoid
+      attributes:
+      - dairy
+      - fermented
+      - tart
+      - high-histamine
+      notes: Fermented milk drink rich in histamine and yeasts
+    - name: General unverified dairy
+      status: avoid
+      attributes:
+      - dairy
+      notes: General dairy not sourced as grass-fed/pasture-raised where specified
 - group: Vegetables
   subgroups:
-    - name: Root Vegetables & Tubers
-      items:
-        - name: Carrots
-          status: safer
-          attributes: [root veggies, sweet, crisp]
-        - name: Sweet potato
-          status: safer
-          attributes: [root veggies, starches, sweet]
-        - name: Beets
-          status: safer
-          attributes: [root veggies, sweet, earthy]
-        - name: Daikon radishes
-          status: safer
-          attributes: [root veggies, peppery, crisp]
-        - name: Jicama
-          status: safer
-          attributes: [root veggies, sweet, crisp]
-        - name: Parsnips
-          status: safer
-          attributes: [root veggies, starches, sweet, earthy]
-        - name: Parsley root
-          status: safer
-          attributes: [root veggies, herbal, earthy]
-        - name: Potatoes
-          status: safer
-          attributes: [starches, tubers, nightshades, earthy]
-        - name: Radishes
-          status: safer
-          attributes: [root veggies, peppery, crisp]
-        - name: Rutabaga
-          status: safer
-          attributes: [root veggies, starches, earthy]
-        - name: Turnip
-          status: safer
-          attributes: [root veggies, earthy, peppery]
-        - name: Celeriac (celery root)
-          status: safer
-          attributes: [root veggies, herbal, earthy]
-
-    - name: Cruciferous (Brassicas)
-      items:
-        - name: Broccoli
-          status: safer
-          attributes: [cruciferous, savory, earthy]
-        - name: Broccolini
-          status: safer
-          attributes: [cruciferous, tender, earthy]
-        - name: Brussels sprouts
-          status: safer
-          attributes: [cruciferous, savory, earthy, nutty]
-        - name: Cauliflower
-          status: safer
-          attributes: [cruciferous, mild, earthy]
-        - name: Bok choy
-          status: safer
-          attributes: [cruciferous, leafy green, crisp, mild]
-        - name: Cabbage (Chinese, green, red, Napa)
-          status: safer
-          attributes: [cruciferous, leafy green, crisp, sweet]
-        - name: Collards
-          status: safer
-          attributes: [cruciferous, leafy green, earthy, hearty]
-        - name: Kohlrabi
-          status: safer
-          attributes: [cruciferous, crisp, sweet]
-        - name: Mizuna
-          status: safer
-          attributes: [cruciferous, leafy green, peppery, salad]
-        - name: Mustard greens
-          status: safer
-          attributes: [cruciferous, leafy green, peppery, pungent]
-
-    - name: Leafy Greens & Salad Greens
-      items:
-        - name: Arugula
-          status: safer
-          attributes: [leafy green, peppery, salad]
-        - name: Dandelion greens
-          status: safer
-          attributes: [leafy green, bitter, herbal]
-        - name: Escarole
-          status: safer
-          attributes: [leafy green, bitter, hearty]
-        - name: Lettuce (butter, endive, green & red, iceberg, radicchio, romaine)
-          status: safer
-          attributes: [leafy green, salad, crisp, mild]
-        - name: Mesclun
-          status: safer
-          attributes: [leafy green, salad, tender]
-        - name: Perilla
-          status: safer
-          attributes: [leafy green, herbal, aromatic]
-        - name: Purslane
-          status: safer
-          attributes: [leafy green, succulent, tart, crisp]
-        - name: Swiss chard
-          status: safer
-          attributes: [leafy green, earthy, tender]
-        - name: Watercress
-          status: safer
-          attributes: [leafy green, peppery, crisp]
-        - name: Frozen leafy greens
-          status: caution
-          attributes: [leafy green, frozen]
-          notes: Histamine can accumulate during industrial handling, freezing, and thawing
-        - name: Spinach
-          status: avoid
-          attributes: [leafy green, high-histamine, histamine-liberator]
-          notes: Naturally high in histamine and acts as a histamine liberator
-
-    - name: Squash & Gourds
-      items:
-        - name: Zucchini
-          status: safer
-          attributes: [squash, tender, mild]
-        - name: Butternut squash
-          status: safer
-          attributes: [squash, starches, sweet, nutty]
-        - name: Spaghetti squash
-          status: safer
-          attributes: [squash, mild, stringy]
-        - name: Summer squash
-          status: safer
-          attributes: [squash, tender, mild]
-        - name: Winter squash
-          status: safer
-          attributes: [squash, starches, sweet, hearty]
-        - name: Yellow squash
-          status: safer
-          attributes: [squash, tender, mild]
-
-    - name: Alliums
-      items:
-        - name: Garlic
-          status: safer
-          attributes: [allium, aromatic, pungent, savory]
-        - name: Onions
-          status: safer
-          attributes: [allium, sweet, savory, pungent]
-        - name: Leeks
-          status: safer
-          attributes: [allium, sweet, mild, savory]
-        - name: Scallions / Shallots
-          status: safer
-          attributes: [allium, pungent, mild, savory]
-        - name: Chives
-          status: safer
-          attributes: [allium, herbal, mild]
-
-    - name: Stalks, Stems, Pods & Succulents
-      items:
-        - name: Artichokes
-          status: safer
-          attributes: [earthy, savory, tender]
-        - name: Asparagus
-          status: safer
-          attributes: [tender, grassy, savory]
-        - name: Bean sprouts
-          status: safer
-          attributes: [sprouts, crisp, mild]
-        - name: Celery
-          status: safer
-          attributes: [stalks, crisp, watery, savory]
-        - name: Cucumber
-          status: safer
-          attributes: [succulent, crisp, refreshing, watery]
-        - name: Fennel
-          status: safer
-          attributes: [stalks, anise, sweet, crisp]
-        - name: Ginger
-          status: safer
-          attributes: [rhizome, spicy, pungent, aromatic]
-        - name: Nopales cactus
-          status: safer
-          attributes: [succulent, tart, tender]
-        - name: Okra
-          status: safer
-          attributes: [pods, mild, mucilaginous]
-        - name: Rhubarb
-          status: safer
-          attributes: [stalks, tart, sour]
-
-    - name: Fresh Culinary Herbs
-      items:
-        - name: Basil
-          status: safer
-          attributes: [herbal, aromatic, sweet]
-        - name: Cilantro
-          status: safer
-          attributes: [herbal, fresh, citrusy]
-        - name: Dill
-          status: safer
-          attributes: [herbal, feathery, aromatic]
-        - name: Mint
-          status: safer
-          attributes: [herbal, cooling, refreshing]
-        - name: Sage
-          status: safer
-          attributes: [herbal, aromatic, savory, earthy]
-        - name: Saffron
-          status: safer
-          attributes: [herbal, floral, earthy, aromatic]
-        - name: Fresh herbs (general)
-          status: safer
-          attributes: [herbal, aromatic]
-
-    - name: Nightshades & Problematic Veggies
-      items:
-        - name: Tomatoes and tomato sauce
-          status: avoid
-          attributes: [nightshades, tart, acidic, savory, high-histamine, histamine-liberator]
-          notes: Very high in histamine and acts as a histamine liberator
-        - name: Eggplant
-          status: avoid
-          attributes: [nightshades, savory, high-histamine]
-          notes: Naturally high in histamine
-        - name: Avocado
-          status: avoid
-          attributes: [fat, rich, creamy, high-histamine]
-          notes: High in histamine and tyramine
-
-    - name: Legumes & Fungi
-      items:
-        - name: Green split peas
-          status: caution
-          attributes: [legumes, starches, savory]
-          notes: Test slowly; may cause digestive or histamine reactivity in sensitive guts
-        - name: Yellow split peas
-          status: avoid
-          attributes: [legumes, starches, high-histamine]
-          notes: Typically higher in biogenic amines / poorly tolerated compared to green peas
-        - name: Mushrooms
-          status: caution
-          attributes: [fungi, umami, earthy, savory]
-          notes: Fungi accumulate biogenic amines quickly; consume only if ultra-fresh
-
-    - name: Fermented & Pickled Vegetables
-      items:
-        - name: Pickles
-          status: avoid
-          attributes: [pickled, tart, sour, fermented, high-histamine]
-          notes: Vinegar pickling and storage create high histamine levels
-        - name: Sauerkraut
-          status: avoid
-          attributes: [fermented, sour, high-histamine]
-          notes: Lacto-fermented cabbage, extremely high in histamine
-
+  - name: Root Vegetables & Tubers
+    items:
+    - name: Carrots
+      status: safer
+      attributes:
+      - root veggies
+      - sweet
+    - name: Sweet potato
+      status: safer
+      attributes:
+      - root veggies
+      - starches
+      - sweet
+    - name: Beets
+      status: safer
+      attributes:
+      - root veggies
+      - sweet
+      - earthy
+    - name: Daikon radishes
+      status: safer
+      attributes:
+      - root veggies
+      - peppery
+    - name: Jicama
+      status: safer
+      attributes:
+      - root veggies
+      - sweet
+    - name: Parsnips
+      status: safer
+      attributes:
+      - root veggies
+      - starches
+      - sweet
+      - earthy
+    - name: Parsley root
+      status: safer
+      attributes:
+      - root veggies
+      - herbal
+      - earthy
+    - name: Potatoes
+      status: safer
+      attributes:
+      - starches
+      - nightshades
+      - earthy
+    - name: Radishes
+      status: safer
+      attributes:
+      - root veggies
+      - peppery
+    - name: Rutabaga
+      status: safer
+      attributes:
+      - root veggies
+      - starches
+      - earthy
+    - name: Turnip
+      status: safer
+      attributes:
+      - root veggies
+      - earthy
+      - peppery
+    - name: Celeriac (celery root)
+      status: safer
+      attributes:
+      - root veggies
+      - herbal
+      - earthy
+  - name: Cruciferous (Brassicas)
+    items:
+    - name: Broccoli
+      status: safer
+      attributes:
+      - cruciferous
+      - savory
+      - earthy
+    - name: Broccolini
+      status: safer
+      attributes:
+      - cruciferous
+      - earthy
+    - name: Brussels sprouts
+      status: safer
+      attributes:
+      - cruciferous
+      - savory
+      - earthy
+    - name: Cauliflower
+      status: safer
+      attributes:
+      - cruciferous
+      - mild
+      - earthy
+    - name: Bok choy
+      status: safer
+      attributes:
+      - cruciferous
+      - leafy green
+      - mild
+    - name: Cabbage (Chinese, green, red, Napa)
+      status: safer
+      attributes:
+      - cruciferous
+      - leafy green
+      - sweet
+    - name: Collards
+      status: safer
+      attributes:
+      - cruciferous
+      - leafy green
+      - earthy
+    - name: Kohlrabi
+      status: safer
+      attributes:
+      - cruciferous
+      - sweet
+    - name: Mizuna
+      status: safer
+      attributes:
+      - cruciferous
+      - leafy green
+      - peppery
+    - name: Mustard greens
+      status: safer
+      attributes:
+      - cruciferous
+      - leafy green
+      - peppery
+      - pungent
+  - name: Leafy Greens & Salad Greens
+    items:
+    - name: Arugula
+      status: safer
+      attributes:
+      - leafy green
+      - peppery
+    - name: Dandelion greens
+      status: safer
+      attributes:
+      - leafy green
+      - bitter
+      - herbal
+    - name: Escarole
+      status: safer
+      attributes:
+      - leafy green
+      - bitter
+    - name: Lettuce (butter, endive, green & red, iceberg, radicchio, romaine)
+      status: safer
+      attributes:
+      - leafy green
+      - mild
+    - name: Mesclun
+      status: safer
+      attributes:
+      - leafy green
+    - name: Perilla
+      status: safer
+      attributes:
+      - leafy green
+      - herbal
+      - aromatic
+    - name: Purslane
+      status: safer
+      attributes:
+      - leafy green
+      - tart
+    - name: Swiss chard
+      status: safer
+      attributes:
+      - leafy green
+      - earthy
+    - name: Watercress
+      status: safer
+      attributes:
+      - leafy green
+      - peppery
+    - name: Frozen leafy greens
+      status: caution
+      attributes:
+      - leafy green
+      notes: Histamine can accumulate during industrial handling, freezing, and thawing
+    - name: Spinach
+      status: avoid
+      attributes:
+      - leafy green
+      - high-histamine
+      - histamine-liberator
+      notes: Naturally high in histamine and acts as a histamine liberator
+  - name: Squash & Gourds
+    items:
+    - name: Zucchini
+      status: safer
+      attributes:
+      - squash
+      - mild
+    - name: Butternut squash
+      status: safer
+      attributes:
+      - squash
+      - starches
+      - sweet
+    - name: Spaghetti squash
+      status: safer
+      attributes:
+      - squash
+      - mild
+    - name: Summer squash
+      status: safer
+      attributes:
+      - squash
+      - mild
+    - name: Winter squash
+      status: safer
+      attributes:
+      - squash
+      - starches
+      - sweet
+    - name: Yellow squash
+      status: safer
+      attributes:
+      - squash
+      - mild
+  - name: Alliums
+    items:
+    - name: Garlic
+      status: safer
+      attributes:
+      - allium
+      - aromatic
+      - pungent
+      - savory
+    - name: Onions
+      status: safer
+      attributes:
+      - allium
+      - sweet
+      - savory
+      - pungent
+    - name: Leeks
+      status: safer
+      attributes:
+      - allium
+      - sweet
+      - mild
+      - savory
+    - name: Scallions / Shallots
+      status: safer
+      attributes:
+      - allium
+      - pungent
+      - mild
+      - savory
+    - name: Chives
+      status: safer
+      attributes:
+      - allium
+      - herbal
+      - mild
+  - name: Stalks, Stems, Pods & Succulents
+    items:
+    - name: Artichokes
+      status: safer
+      attributes:
+      - earthy
+      - savory
+    - name: Asparagus
+      status: safer
+      attributes:
+      - savory
+    - name: Bean sprouts
+      status: safer
+      attributes:
+      - mild
+    - name: Celery
+      status: safer
+      attributes:
+      - savory
+    - name: Cucumber
+      status: safer
+      attributes:
+      - mild
+    - name: Fennel
+      status: safer
+      attributes:
+      - sweet
+    - name: Ginger
+      status: safer
+      attributes:
+      - pungent
+      - aromatic
+    - name: Nopales cactus
+      status: safer
+      attributes:
+      - tart
+    - name: Okra
+      status: safer
+      attributes:
+      - mild
+    - name: Rhubarb
+      status: safer
+      attributes:
+      - tart
+  - name: Fresh Culinary Herbs
+    items:
+    - name: Basil
+      status: safer
+      attributes:
+      - herbal
+      - aromatic
+      - sweet
+    - name: Cilantro
+      status: safer
+      attributes:
+      - herbal
+    - name: Dill
+      status: safer
+      attributes:
+      - herbal
+      - aromatic
+    - name: Mint
+      status: safer
+      attributes:
+      - herbal
+    - name: Sage
+      status: safer
+      attributes:
+      - herbal
+      - aromatic
+      - savory
+      - earthy
+    - name: Saffron
+      status: safer
+      attributes:
+      - herbal
+      - earthy
+      - aromatic
+    - name: Fresh herbs (general)
+      status: safer
+      attributes:
+      - herbal
+      - aromatic
+  - name: Nightshades & Problematic Veggies
+    items:
+    - name: Tomatoes and tomato sauce
+      status: avoid
+      attributes:
+      - nightshades
+      - tart
+      - savory
+      - high-histamine
+      - histamine-liberator
+      notes: Very high in histamine and acts as a histamine liberator
+    - name: Eggplant
+      status: avoid
+      attributes:
+      - nightshades
+      - savory
+      - high-histamine
+      notes: Naturally high in histamine
+    - name: Avocado
+      status: avoid
+      attributes:
+      - fat
+      - high-histamine
+      notes: High in histamine and tyramine
+  - name: Legumes & Fungi
+    items:
+    - name: Green split peas
+      status: caution
+      attributes:
+      - legumes
+      - starches
+      - savory
+      notes: Test slowly; may cause digestive or histamine reactivity in sensitive guts
+    - name: Yellow split peas
+      status: avoid
+      attributes:
+      - legumes
+      - starches
+      - high-histamine
+      notes: Typically higher in biogenic amines / poorly tolerated compared to green peas
+    - name: Mushrooms
+      status: caution
+      attributes:
+      - fungi
+      - earthy
+      - savory
+      notes: Fungi accumulate biogenic amines quickly; consume only if ultra-fresh
+  - name: Fermented & Pickled Vegetables
+    items:
+    - name: Pickles
+      status: avoid
+      attributes:
+      - tart
+      - fermented
+      - high-histamine
+      notes: Vinegar pickling and storage create high histamine levels
+    - name: Sauerkraut
+      status: avoid
+      attributes:
+      - fermented
+      - tart
+      - high-histamine
+      notes: Lacto-fermented cabbage, extremely high in histamine
 - group: Fruit
   subgroups:
-    - name: Pome & Stone Fruit
-      items:
-        - name: Apples
-          status: safer
-          attributes: [pome fruit, crisp, sweet, tart]
-        - name: Pears
-          status: safer
-          attributes: [pome fruit, sweet, juicy, mild]
-        - name: Apricots
-          status: safer
-          attributes: [stone fruit, sweet, tart]
-        - name: Cherries
-          status: safer
-          attributes: [stone fruit, sweet, tart, juicy]
-        - name: Nectarines
-          status: safer
-          attributes: [stone fruit, sweet, tart, juicy]
-        - name: Peaches
-          status: safer
-          attributes: [stone fruit, sweet, juicy]
-
-    - name: Berries
-      items:
-        - name: Blueberries
-          status: safer
-          attributes: [berry, sweet, antioxidant]
-        - name: Blackberries
-          status: safer
-          attributes: [berry, sweet, tart]
-        - name: Cranberries
-          status: safer
-          attributes: [berry, tart, sour]
-        - name: Fresh currants
-          status: safer
-          attributes: [berry, tart, sweet]
-        - name: Strawberries
-          status: caution
-          attributes: [berry, sweet, tart, histamine-liberator]
-          notes: Well-known histamine liberator
-        - name: Raspberries
-          status: caution
-          attributes: [berry, sweet, tart, histamine-liberator]
-          notes: Histamine liberator; contains natural benzoates
-
-    - name: Melons
-      items:
-        - name: Cantaloupe / rock melon
-          status: safer
-          attributes: [melon, sweet, juicy, refreshing]
-        - name: Honeydew
-          status: safer
-          attributes: [melon, sweet, juicy, refreshing]
-        - name: Watermelon
-          status: safer
-          attributes: [melon, sweet, hydrating, refreshing]
-        - name: Melon (general)
-          status: safer
-          attributes: [melon, sweet, juicy]
-
-    - name: Tropical & Subtropical Fruit
-      items:
-        - name: Dragon fruit
-          status: safer
-          attributes: [tropical, mild, sweet]
-        - name: Figs
-          status: safer
-          attributes: [sweet, tender, honeyed]
-        - name: Ripe guava
-          status: safer
-          attributes: [tropical, sweet, aromatic]
-        - name: Kiwi
-          status: safer
-          attributes: [tropical, tart, sweet]
-        - name: Mango
-          status: safer
-          attributes: [tropical, sweet, juicy, rich]
-        - name: Passion fruit
-          status: safer
-          attributes: [tropical, tart, aromatic]
-        - name: Persimmons / kaki
-          status: safer
-          attributes: [sweet, honeyed, mild]
-        - name: Plantains
-          status: safer
-          attributes: [tropical, starches, sweet, firm]
-        - name: Pomegranate
-          status: safer
-          attributes: [sweet, tart, crunchy]
-        - name: Bananas
-          status: caution
-          attributes: [tropical, sweet, starches, histamine-liberator]
-          notes: Histamine liberator and tyramine; slightly green bananas tolerated better than ripe
-        - name: Pineapple
-          status: caution
-          attributes: [tropical, tart, sweet, acidic, histamine-liberator]
-          notes: Histamine liberator and high in bromelain/acids
-        - name: Citrus (lemon / lime)
-          status: caution
-          attributes: [citrus, tart, sour, acidic, histamine-liberator]
-          notes: Used in small amounts if tolerated; histamine liberator
-
-    - name: Dried & Overripe Fruit
-      items:
-        - name: Dried fruit
-          status: avoid
-          attributes: [dried fruit, sweet, concentrated, high-histamine]
-          notes: Dates, raisins, prunes; high histamine and sulfites
-        - name: Very ripe fruit
-          status: avoid
-          attributes: [overripe, sweet, fermented, high-histamine]
-          notes: Histamine increases rapidly as fruit overripens and begins fermenting
-
+  - name: Pome & Stone Fruit
+    items:
+    - name: Apples
+      status: safer
+      attributes:
+      - pome fruit
+      - sweet
+      - tart
+    - name: Pears
+      status: safer
+      attributes:
+      - pome fruit
+      - sweet
+      - mild
+    - name: Apricots
+      status: safer
+      attributes:
+      - stone fruit
+      - sweet
+      - tart
+    - name: Cherries
+      status: safer
+      attributes:
+      - stone fruit
+      - sweet
+      - tart
+    - name: Nectarines
+      status: safer
+      attributes:
+      - stone fruit
+      - sweet
+      - tart
+    - name: Peaches
+      status: safer
+      attributes:
+      - stone fruit
+      - sweet
+  - name: Berries
+    items:
+    - name: Blueberries
+      status: safer
+      attributes:
+      - berry
+      - sweet
+    - name: Blackberries
+      status: safer
+      attributes:
+      - berry
+      - sweet
+      - tart
+    - name: Cranberries
+      status: safer
+      attributes:
+      - berry
+      - tart
+    - name: Fresh currants
+      status: safer
+      attributes:
+      - berry
+      - tart
+      - sweet
+    - name: Strawberries
+      status: caution
+      attributes:
+      - berry
+      - sweet
+      - tart
+      - histamine-liberator
+      notes: Well-known histamine liberator
+    - name: Raspberries
+      status: caution
+      attributes:
+      - berry
+      - sweet
+      - tart
+      - histamine-liberator
+      notes: Histamine liberator; contains natural benzoates
+  - name: Melons
+    items:
+    - name: Cantaloupe / rock melon
+      status: safer
+      attributes:
+      - melon
+      - sweet
+    - name: Honeydew
+      status: safer
+      attributes:
+      - melon
+      - sweet
+    - name: Watermelon
+      status: safer
+      attributes:
+      - melon
+      - sweet
+    - name: Melon (general)
+      status: safer
+      attributes:
+      - melon
+      - sweet
+  - name: Tropical & Subtropical Fruit
+    items:
+    - name: Dragon fruit
+      status: safer
+      attributes:
+      - tropical
+      - mild
+      - sweet
+    - name: Figs
+      status: safer
+      attributes:
+      - sweet
+    - name: Ripe guava
+      status: safer
+      attributes:
+      - tropical
+      - sweet
+      - aromatic
+    - name: Kiwi
+      status: safer
+      attributes:
+      - tropical
+      - tart
+      - sweet
+    - name: Mango
+      status: safer
+      attributes:
+      - tropical
+      - sweet
+    - name: Passion fruit
+      status: safer
+      attributes:
+      - tropical
+      - tart
+      - aromatic
+    - name: Persimmons / kaki
+      status: safer
+      attributes:
+      - sweet
+      - mild
+    - name: Plantains
+      status: safer
+      attributes:
+      - tropical
+      - starches
+      - sweet
+    - name: Pomegranate
+      status: safer
+      attributes:
+      - sweet
+      - tart
+    - name: Bananas
+      status: caution
+      attributes:
+      - tropical
+      - sweet
+      - starches
+      - histamine-liberator
+      notes: Histamine liberator and tyramine; slightly green bananas tolerated better than ripe
+    - name: Pineapple
+      status: caution
+      attributes:
+      - tropical
+      - tart
+      - sweet
+      - histamine-liberator
+      notes: Histamine liberator and high in bromelain/acids
+    - name: Citrus (lemon / lime)
+      status: caution
+      attributes:
+      - citrus
+      - tart
+      - histamine-liberator
+      notes: Used in small amounts if tolerated; histamine liberator
+  - name: Dried & Overripe Fruit
+    items:
+    - name: Dried fruit
+      status: avoid
+      attributes:
+      - sweet
+      - high-histamine
+      notes: Dates, raisins, prunes; high histamine and sulfites
+    - name: Very ripe fruit
+      status: avoid
+      attributes:
+      - sweet
+      - fermented
+      - high-histamine
+      notes: Histamine increases rapidly as fruit overripens and begins fermenting
 - group: Grains and starches
   subgroups:
-    - name: Whole Grains & Pseudocereals
-      items:
-        - name: Rice (black, brown, white)
-          status: safer
-          attributes: [grain, starches, gluten-free, mild]
-        - name: Oats
-          status: safer
-          attributes: [grain, starches, fiber, hearty]
-          notes: Use certified gluten-free if needed
-        - name: Amaranth
-          status: safer
-          attributes: [pseudocereal, starches, nutty, gluten-free]
-        - name: Buckwheat / buckwheat flour
-          status: safer
-          attributes: [pseudocereal, starches, earthy, gluten-free]
-          notes: Naturally gluten-free pseudocereal
-        - name: Corn / popcorn
-          status: safer
-          attributes: [grain, starches, sweet, crunchy]
-        - name: Millet
-          status: safer
-          attributes: [grain, starches, mild, gluten-free]
-        - name: Quinoa
-          status: safer
-          attributes: [pseudocereal, starches, protein, gluten-free]
-        - name: Sorghum (black / white)
-          status: safer
-          attributes: [grain, starches, mild, gluten-free]
-        - name: Teff
-          status: safer
-          attributes: [grain, starches, nutty, gluten-free]
-
-    - name: Flours & Starches
-      items:
-        - name: Arrowroot flour
-          status: safer
-          attributes: [starches, flour, thickening, gluten-free]
-        - name: Potato starch
-          status: safer
-          attributes: [starches, thickening, neutral, gluten-free]
-        - name: Tapioca starch / flour
-          status: safer
-          attributes: [starches, flour, chewy, gluten-free]
-        - name: Blanched almond flour
-          status: safer
-          attributes: [nut, flour, rich, nutty]
-        - name: Otto's cassava flour
-          status: safer
-          attributes: [starches, flour, grain-free, neutral]
-        - name: Flax meal
-          status: safer
-          attributes: [seed, fiber, nutty, omega-3]
-        - name: Tiger nuts / tiger nut flour
-          status: safer
-          attributes: [tubers, starches, sweet, flour]
-          notes: Tubers, not nuts; naturally sweet and prebiotic
-
-    - name: Pastas, Crackers & Breads
-      items:
-        - name: Corn or rice pasta
-          status: safer
-          attributes: [pasta, starches, gluten-free]
-        - name: Gluten-free crackers
-          status: safer
-          attributes: [snack, starches, crunchy, gluten-free]
-        - name: Wheat bread and pasta
-          status: caution
-          attributes: [gluten, starches, wheat]
-          notes: Gluten and bakery additives can provoke digestive/mast cell symptoms
-        - name: Sourdough and fermented / yeast-heavy breads
-          status: avoid
-          attributes: [bread, fermented, yeast, high-histamine]
-          notes: Extended yeast and sourdough fermentation results in high histamine
-
-    - name: Starchy Roots & Greens
-      items:
-        - name: Potatoes
-          status: safer
-          attributes: [starches, tubers, nightshades, earthy]
-        - name: Turnip greens / root
-          status: safer
-          attributes: [root veggies, starches, earthy, leafy green]
-
+  - name: Whole Grains & Pseudocereals
+    items:
+    - name: Rice (black, brown, white)
+      status: safer
+      attributes:
+      - grain
+      - starches
+      - gluten-free
+      - mild
+    - name: Oats
+      status: safer
+      attributes:
+      - grain
+      - starches
+      notes: Use certified gluten-free if needed
+    - name: Amaranth
+      status: safer
+      attributes:
+      - grain
+      - starches
+      - gluten-free
+    - name: Buckwheat / buckwheat flour
+      status: safer
+      attributes:
+      - grain
+      - starches
+      - earthy
+      - gluten-free
+      notes: Naturally gluten-free pseudocereal
+    - name: Corn / popcorn
+      status: safer
+      attributes:
+      - grain
+      - starches
+      - sweet
+    - name: Millet
+      status: safer
+      attributes:
+      - grain
+      - starches
+      - mild
+      - gluten-free
+    - name: Quinoa
+      status: safer
+      attributes:
+      - grain
+      - starches
+      - gluten-free
+    - name: Sorghum (black / white)
+      status: safer
+      attributes:
+      - grain
+      - starches
+      - mild
+      - gluten-free
+    - name: Teff
+      status: safer
+      attributes:
+      - grain
+      - starches
+      - gluten-free
+  - name: Flours & Starches
+    items:
+    - name: Arrowroot flour
+      status: safer
+      attributes:
+      - starches
+      - flour
+      - gluten-free
+    - name: Potato starch
+      status: safer
+      attributes:
+      - starches
+      - gluten-free
+    - name: Tapioca starch / flour
+      status: safer
+      attributes:
+      - starches
+      - flour
+      - gluten-free
+    - name: Blanched almond flour
+      status: safer
+      attributes:
+      - nut
+      - flour
+    - name: Otto's cassava flour
+      status: safer
+      attributes:
+      - starches
+      - flour
+    - name: Flax meal
+      status: safer
+      attributes:
+      - seed
+    - name: Tiger nuts / tiger nut flour
+      status: safer
+      attributes:
+      - starches
+      - sweet
+      - flour
+      notes: Tubers, not nuts; naturally sweet and prebiotic
+  - name: Pastas, Crackers & Breads
+    items:
+    - name: Corn or rice pasta
+      status: safer
+      attributes:
+      - flour
+      - starches
+      - gluten-free
+    - name: Gluten-free crackers
+      status: safer
+      attributes:
+      - starches
+      - gluten-free
+    - name: Wheat bread and pasta
+      status: caution
+      attributes:
+      - gluten
+      - starches
+      notes: Gluten and bakery additives can provoke digestive/mast cell symptoms
+    - name: Sourdough and fermented / yeast-heavy breads
+      status: avoid
+      attributes:
+      - flour
+      - fermented
+      - high-histamine
+      notes: Extended yeast and sourdough fermentation results in high histamine
+  - name: Starchy Roots & Greens
+    items:
+    - name: Potatoes
+      status: safer
+      attributes:
+      - starches
+      - nightshades
+      - earthy
+    - name: Turnip greens / root
+      status: safer
+      attributes:
+      - root veggies
+      - starches
+      - earthy
+      - leafy green
 - group: Drinks
   subgroups:
-    - name: Water & Hydration
-      items:
-        - name: Water
-          status: safer
-          attributes: [water, hydrating, neutral, zero-histamine]
-        - name: Mineral water (plain or carbonated)
-          status: safer
-          attributes: [water, mineral, sparkling, hydrating]
-        - name: Coconut water
-          status: safer
-          attributes: [hydrating, sweet, electrolytes]
-        - name: Water with fresh squeezed lemon or lime
-          status: caution
-          attributes: [water, citrus, tart, acidic, histamine-liberator]
-          notes: Citrus is a histamine liberator; use small amounts if tolerated
-
-    - name: Teas & Infusions
-      items:
-        - name: Fresh herbal tea
-          status: safer
-          attributes: [herbal tea, soothing, botanical, caffeine-free]
-          notes: Chamomile, peppermint, lemongrass, dandelion root
-        - name: Black tea
-          status: caution
-          attributes: [tea, caffeinated, fermented, astringent, DAO-blocker]
-          notes: Fermented tea leaves inhibit DAO enzyme and contain caffeine
-        - name: Green tea
-          status: caution
-          attributes: [tea, caffeinated, antioxidant, DAO-blocker]
-          notes: Contains caffeine and tannins that can inhibit DAO
-
-    - name: Fresh Juices
-      items:
-        - name: Fresh juices of allowed fruits / vegetables
-          status: safer
-          attributes: [juice, fresh, hydrating, sweet]
-          notes: Freshly pressed and consumed immediately
-
-    - name: Coffee & Caffeinated Beverages
-      items:
-        - name: Coffee
-          status: caution
-          attributes: [coffee, caffeinated, bitter, acidic, DAO-blocker]
-          notes: Caffeine can trigger histamine release and inhibit DAO
-
-    - name: Alcoholic & Fermented Drinks
-      items:
-        - name: Alcohol (wine and beer)
-          status: avoid
-          attributes: [alcoholic, fermented, DAO-blocker, high-histamine]
-          notes: Potent DAO enzyme blocker; fermented drinks carry high biogenic amines
-        - name: Kombucha
-          status: avoid
-          attributes: [fermented, probiotic, tart, high-histamine]
-          notes: Fermented tea with live yeast and bacteria, very high in histamine
-        - name: Commercial canned or processed drinks
-          status: avoid
-          attributes: [processed, sugary, artificial, preservatives]
-          notes: Sodas, energy drinks, and bottled sweetened teas with preservatives
-
+  - name: Water & Hydration
+    items:
+    - name: Water
+      status: safer
+      attributes:
+      - mild
+    - name: Mineral water (plain or carbonated)
+      status: safer
+      attributes:
+      - mild
+    - name: Coconut water
+      status: safer
+      attributes:
+      - sweet
+    - name: Water with fresh squeezed lemon or lime
+      status: caution
+      attributes:
+      - citrus
+      - tart
+      - histamine-liberator
+      notes: Citrus is a histamine liberator; use small amounts if tolerated
+  - name: Teas & Infusions
+    items:
+    - name: Fresh herbal tea
+      status: safer
+      attributes:
+      - mild
+      notes: Chamomile, peppermint, lemongrass, dandelion root
+    - name: Black tea
+      status: caution
+      attributes:
+      - caffeinated
+      - fermented
+      - DAO-blocker
+      notes: Fermented tea leaves inhibit DAO enzyme and contain caffeine
+    - name: Green tea
+      status: caution
+      attributes:
+      - caffeinated
+      - DAO-blocker
+      notes: Contains caffeine and tannins that can inhibit DAO
+  - name: Fresh Juices
+    items:
+    - name: Fresh juices of allowed fruits / vegetables
+      status: safer
+      attributes:
+      - sweet
+      notes: Freshly pressed and consumed immediately
+  - name: Coffee & Caffeinated Beverages
+    items:
+    - name: Coffee
+      status: caution
+      attributes:
+      - caffeinated
+      - bitter
+      - tart
+      - DAO-blocker
+      notes: Caffeine can trigger histamine release and inhibit DAO
+  - name: Alcoholic & Fermented Drinks
+    items:
+    - name: Alcohol (wine and beer)
+      status: avoid
+      attributes:
+      - fermented
+      - DAO-blocker
+      - high-histamine
+      notes: Potent DAO enzyme blocker; fermented drinks carry high biogenic amines
+    - name: Kombucha
+      status: avoid
+      attributes:
+      - fermented
+      - tart
+      - high-histamine
+      notes: Fermented tea with live yeast and bacteria, very high in histamine
+    - name: Commercial canned or processed drinks
+      status: avoid
+      attributes:
+      - mild
+      notes: Sodas, energy drinks, and bottled sweetened teas with preservatives
 - group: Flavor and extras
   subgroups:
-    - name: Salts & Cooking Fats / Oils
-      items:
-        - name: Salt
-          status: safer
-          attributes: [salt, seasoning, mineral, savory]
-        - name: Olive oil (extra virgin)
-          status: safer
-          attributes: [oil, fat, savory, fruity]
-          notes: Use cautiously, ensure fresh high quality
-        - name: Extra virgin coconut oil
-          status: safer
-          attributes: [oil, fat, mild, tropical]
-        - name: Grass-fed butter
-          status: safer
-          attributes: [dairy, fat, savory, rich]
-        - name: Grass-fed ghee
-          status: safer
-          attributes: [dairy, fat, nutty, rich]
-          notes: Clarified butter; virtually zero milk solids
-
-    - name: Fresh Aromatics
-      items:
-        - name: Fresh garlic
-          status: safer
-          attributes: [allium, aromatic, pungent, savory]
-        - name: Fresh onion
-          status: safer
-          attributes: [allium, sweet, savory, pungent]
-        - name: Fresh ginger
-          status: safer
-          attributes: [rhizome, spicy, pungent, warming]
-
-    - name: Culinary Herbs
-      items:
-        - name: Fresh herbs (general)
-          status: safer
-          attributes: [herbal, aromatic]
-        - name: Basil
-          status: safer
-          attributes: [herbal, sweet, aromatic]
-        - name: Bay leaves
-          status: safer
-          attributes: [herbal, aromatic, savory]
-        - name: Caraway
-          status: safer
-          attributes: [herbal, anise, savory]
-        - name: Chives
-          status: safer
-          attributes: [allium, herbal, mild]
-        - name: Cilantro
-          status: safer
-          attributes: [herbal, fresh, citrusy]
-        - name: Curry leaves
-          status: safer
-          attributes: [herbal, aromatic, savory]
-        - name: Dill
-          status: safer
-          attributes: [herbal, feathery, aromatic]
-        - name: Lemongrass
-          status: safer
-          attributes: [herbal, citrusy, fresh]
-        - name: Oregano
-          status: safer
-          attributes: [herbal, pungent, savory]
-        - name: Parsley
-          status: safer
-          attributes: [herbal, fresh, clean]
-        - name: Sage
-          status: safer
-          attributes: [herbal, savory, earthy]
-        - name: Tarragon
-          status: safer
-          attributes: [herbal, anise, sweet]
-        - name: Thyme
-          status: safer
-          attributes: [herbal, earthy, savory]
-
-    - name: Spices & Seasonings
-      items:
-        - name: Cardamom
-          status: safer
-          attributes: [spice, sweet, aromatic, warming]
-        - name: Coriander
-          status: safer
-          attributes: [spice, citrusy, floral]
-        - name: Cumin
-          status: safer
-          attributes: [spice, earthy, warm, savory]
-        - name: Curcumin powder
-          status: safer
-          attributes: [spice, anti-inflammatory, earthy, bitter]
-        - name: Fennel seed
-          status: safer
-          attributes: [spice, sweet, anise]
-        - name: Fenugreek
-          status: safer
-          attributes: [spice, maple, bittersweet]
-        - name: Pink peppercorns
-          status: safer
-          attributes: [spice, peppery, floral, mild]
-          notes: Milder and better tolerated than true black/chili pepper
-        - name: Saffron
-          status: safer
-          attributes: [spice, floral, earthy, aromatic]
-        - name: Turmeric
-          status: safer
-          attributes: [spice, earthy, warming, anti-inflammatory]
-
-    - name: Sweeteners
-      items:
-        - name: Unrefined sugar
-          status: safer
-          attributes: [sweetener, sweet]
-        - name: Monk fruit
-          status: safer
-          attributes: [sweetener, sweet, zero-calorie]
-        - name: Stevia
-          status: safer
-          attributes: [sweetener, sweet, herbal, zero-calorie]
-        - name: Maple syrup
-          status: safer
-          attributes: [sweetener, sweet, rich]
-          notes: Use sparingly
-        - name: Coconut sugar
-          status: safer
-          attributes: [sweetener, sweet, caramel]
-          notes: Use sparingly
-
-    - name: Nuts, Seeds & Chocolate
-      items:
-        - name: Chocolate
-          status: caution
-          attributes: [cacao, fermented, sweet, bitter, histamine-liberator]
-          notes: Cocoa is fermented and contains biogenic amines, theobromine, caffeine
-        - name: Almonds
-          status: caution
-          attributes: [nut, protein, fat, nutty]
-          notes: Contains biogenic amines; blanched almonds are safer
-        - name: Baru nuts
-          status: caution
-          attributes: [nut, protein, fat, nutty]
-        - name: Brazil nuts
-          status: caution
-          attributes: [nut, rich, selenium, fat]
-        - name: Hazelnuts
-          status: caution
-          attributes: [nut, fat, rich, nutty]
-        - name: Macadamias
-          status: caution
-          attributes: [nut, rich, fat, mild]
-        - name: Pecans
-          status: caution
-          attributes: [nut, sweet, fat, rich]
-        - name: Pine nuts
-          status: caution
-          attributes: [seed, nut, buttery, delicate]
-        - name: Pistachio
-          status: caution
-          attributes: [nut, savory, rich]
-        - name: Pumpkin seeds
-          status: caution
-          attributes: [seed, starches, zinc, nutty]
-        - name: Sesame seeds
-          status: caution
-          attributes: [seed, nutty, savory]
-        - name: Sunflower seeds
-          status: caution
-          attributes: [seed, nutty, mild]
-        - name: Chia seeds
-          status: caution
-          attributes: [seed, fiber, omega-3]
-        - name: Flax seeds
-          status: caution
-          attributes: [seed, fiber, omega-3, nutty]
-        - name: Hemp protein / seeds
-          status: caution
-          attributes: [seed, protein, nutty]
-
-    - name: Condiments, Sauces & Vinegars
-      items:
-        - name: Vinegar
-          status: avoid
-          attributes: [condiment, fermented, acidic, sour, high-histamine]
-          notes: Fermented product; red/white wine, cider, and balsamic vinegars are very high histamine
-        - name: Soy sauce
-          status: avoid
-          attributes: [condiment, fermented, umami, savory, high-sodium, high-histamine]
-          notes: Fermented soy and wheat, extremely high in histamine and glutamate
-        - name: Store-bought broth and bouillon
-          status: avoid
-          attributes: [condiment, savory, high-histamine]
-          notes: Long-simmered bone/meat broths extract massive histamine; bouillon cubes contain yeast extract
-        - name: Ketchup
-          status: avoid
-          attributes: [condiment, nightshades, fermented, sweet, tart, acidic, high-histamine]
-          notes: Combines high-histamine tomatoes and vinegar
-        - name: Processed condiments
-          status: avoid
-          attributes: [condiment, processed, preservatives, high-histamine]
-          notes: Commercial mayonnaise, mustard, relish, and sauces with vinegar/preservatives
+  - name: Salts & Cooking Fats / Oils
+    items:
+    - name: Salt
+      status: safer
+      attributes:
+      - savory
+      - spice
+    - name: Olive oil (extra virgin)
+      status: safer
+      attributes:
+      - oil
+      - fat
+      - savory
+      notes: Use cautiously, ensure fresh high quality
+    - name: Extra virgin coconut oil
+      status: safer
+      attributes:
+      - oil
+      - fat
+      - mild
+      - tropical
+    - name: Grass-fed butter
+      status: safer
+      attributes:
+      - dairy
+      - fat
+      - savory
+    - name: Grass-fed ghee
+      status: safer
+      attributes:
+      - dairy
+      - fat
+      notes: Clarified butter; virtually zero milk solids
+  - name: Fresh Aromatics
+    items:
+    - name: Fresh garlic
+      status: safer
+      attributes:
+      - allium
+      - aromatic
+      - pungent
+      - savory
+    - name: Fresh onion
+      status: safer
+      attributes:
+      - allium
+      - sweet
+      - savory
+      - pungent
+    - name: Fresh ginger
+      status: safer
+      attributes:
+      - pungent
+  - name: Culinary Herbs
+    items:
+    - name: Fresh herbs (general)
+      status: safer
+      attributes:
+      - herbal
+      - aromatic
+    - name: Basil
+      status: safer
+      attributes:
+      - herbal
+      - sweet
+      - aromatic
+    - name: Bay leaves
+      status: safer
+      attributes:
+      - herbal
+      - aromatic
+      - savory
+    - name: Caraway
+      status: safer
+      attributes:
+      - herbal
+      - savory
+    - name: Chives
+      status: safer
+      attributes:
+      - allium
+      - herbal
+      - mild
+    - name: Cilantro
+      status: safer
+      attributes:
+      - herbal
+    - name: Curry leaves
+      status: safer
+      attributes:
+      - herbal
+      - aromatic
+      - savory
+    - name: Dill
+      status: safer
+      attributes:
+      - herbal
+      - aromatic
+    - name: Lemongrass
+      status: safer
+      attributes:
+      - herbal
+    - name: Oregano
+      status: safer
+      attributes:
+      - herbal
+      - pungent
+      - savory
+    - name: Parsley
+      status: safer
+      attributes:
+      - herbal
+    - name: Sage
+      status: safer
+      attributes:
+      - herbal
+      - savory
+      - earthy
+    - name: Tarragon
+      status: safer
+      attributes:
+      - herbal
+      - sweet
+    - name: Thyme
+      status: safer
+      attributes:
+      - herbal
+      - earthy
+      - savory
+  - name: Spices & Seasonings
+    items:
+    - name: Cardamom
+      status: safer
+      attributes:
+      - spice
+      - sweet
+      - aromatic
+    - name: Coriander
+      status: safer
+      attributes:
+      - spice
+    - name: Cumin
+      status: safer
+      attributes:
+      - spice
+      - earthy
+      - savory
+    - name: Curcumin powder
+      status: safer
+      attributes:
+      - spice
+      - earthy
+      - bitter
+    - name: Fennel seed
+      status: safer
+      attributes:
+      - spice
+      - sweet
+    - name: Fenugreek
+      status: safer
+      attributes:
+      - spice
+    - name: Pink peppercorns
+      status: safer
+      attributes:
+      - spice
+      - peppery
+      - mild
+      notes: Milder and better tolerated than true black/chili pepper
+    - name: Saffron
+      status: safer
+      attributes:
+      - spice
+      - earthy
+      - aromatic
+    - name: Turmeric
+      status: safer
+      attributes:
+      - spice
+      - earthy
+  - name: Sweeteners
+    items:
+    - name: Unrefined sugar
+      status: safer
+      attributes:
+      - sweetener
+      - sweet
+    - name: Monk fruit
+      status: safer
+      attributes:
+      - sweetener
+      - sweet
+    - name: Stevia
+      status: safer
+      attributes:
+      - sweetener
+      - sweet
+      - herbal
+    - name: Maple syrup
+      status: safer
+      attributes:
+      - sweetener
+      - sweet
+      notes: Use sparingly
+    - name: Coconut sugar
+      status: safer
+      attributes:
+      - sweetener
+      - sweet
+      notes: Use sparingly
+  - name: Nuts, Seeds & Chocolate
+    items:
+    - name: Chocolate
+      status: caution
+      attributes:
+      - fermented
+      - sweet
+      - bitter
+      - histamine-liberator
+      notes: Cocoa is fermented and contains biogenic amines, theobromine, caffeine
+    - name: Almonds
+      status: caution
+      attributes:
+      - nut
+      - fat
+      notes: Contains biogenic amines; blanched almonds are safer
+    - name: Baru nuts
+      status: caution
+      attributes:
+      - nut
+      - fat
+    - name: Brazil nuts
+      status: caution
+      attributes:
+      - nut
+      - fat
+    - name: Hazelnuts
+      status: caution
+      attributes:
+      - nut
+      - fat
+    - name: Macadamias
+      status: caution
+      attributes:
+      - nut
+      - fat
+      - mild
+    - name: Pecans
+      status: caution
+      attributes:
+      - nut
+      - sweet
+      - fat
+    - name: Pine nuts
+      status: caution
+      attributes:
+      - seed
+      - nut
+    - name: Pistachio
+      status: caution
+      attributes:
+      - nut
+      - savory
+    - name: Pumpkin seeds
+      status: caution
+      attributes:
+      - seed
+      - starches
+    - name: Sesame seeds
+      status: caution
+      attributes:
+      - seed
+      - savory
+    - name: Sunflower seeds
+      status: caution
+      attributes:
+      - seed
+      - mild
+    - name: Chia seeds
+      status: caution
+      attributes:
+      - seed
+    - name: Flax seeds
+      status: caution
+      attributes:
+      - seed
+    - name: Hemp protein / seeds
+      status: caution
+      attributes:
+      - seed
+  - name: Condiments, Sauces & Vinegars
+    items:
+    - name: Vinegar
+      status: avoid
+      attributes:
+      - fermented
+      - tart
+      - high-histamine
+      notes: Fermented product; red/white wine, cider, and balsamic vinegars are very high histamine
+    - name: Soy sauce
+      status: avoid
+      attributes:
+      - fermented
+      - savory
+      - high-histamine
+      notes: Fermented soy and wheat, extremely high in histamine and glutamate
+    - name: Store-bought broth and bouillon
+      status: avoid
+      attributes:
+      - savory
+      - high-histamine
+      notes: Long-simmered bone/meat broths extract massive histamine; bouillon cubes contain yeast extract
+    - name: Ketchup
+      status: avoid
+      attributes:
+      - nightshades
+      - fermented
+      - sweet
+      - tart
+      - high-histamine
+      notes: Combines high-histamine tomatoes and vinegar
+    - name: Processed condiments
+      status: avoid
+      attributes:
+      - high-histamine
+      notes: Commercial mayonnaise, mustard, relish, and sauces with vinegar/preservatives
