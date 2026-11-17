@@ -24,6 +24,7 @@ from lib.content import (
     get_food_reference_table_rows,
     get_food_subgroups,
     get_foods_by_attribute,
+    get_foods_by_attributes,
     load_checklists,
     load_food_reference,
     load_meal_plan,
@@ -523,8 +524,9 @@ def page_experimental_replacer() -> None:
         return
 
     st.markdown(
-        "Experiment with ingredient replacements to tailor any recipe to your histamine tolerance, pantry ingredients, or budget. "
-        "Swap an ingredient either **using functional attributes** (e.g., matching starches, root vegetables, poultry, tart, or aromatics) "
+        "This tool is intended primarily for **experienced cooks** who know how to adjust recipes and cooking times accordingly when swapping ingredients. "
+        "Experiment with ingredient replacements to tailor recipes to your personal histamine tolerance, pantry staples, or budget. "
+        "Swap ingredients either **using functional attributes** (e.g., matching starches, root vegetables, poultry, or aromatics) "
         "or **by choosing a specific ingredient** directly. The replacer calculates the updated cost per serving and generates a fully compliant recipe YAML."
     )
 
@@ -537,11 +539,11 @@ def page_experimental_replacer() -> None:
             "attr": "poultry",
             "new_food": "Turkey",
         },
-        "🥩 ➔ 🐑 Example 2: Beef Potato Hash ➔ Lamb & Sweet Potato Hash (Attribute: red meat)": {
+        "🥩 ➔ 🐑 Example 2: Beef Potato Hash ➔ Lamb & Sweet Potato Hash (Attributes: red meat, savory)": {
             "recipe_id": "skillet-beef-potato-hash",
             "old_ing": "1/2 lb fresh ground beef",
             "mode": "Swap using Attributes",
-            "attr": "red meat",
+            "attr": ["red meat", "savory"],
             "new_food": "Lamb",
         },
         "🍗 ➔ 🐟 Example 3: Chicken Rice ➔ Flash-Frozen Salmon Rice (Ingredient: Meat and fish)": {
@@ -558,11 +560,11 @@ def page_experimental_replacer() -> None:
             "attr": "starches",
             "new_food": "Quinoa",
         },
-        "🍎 ➔ 🍐 Example 5: Apple Oatmeal ➔ Pear & Blueberry Oatmeal (Attribute: fruit)": {
+        "🍎 ➔ 🍐 Example 5: Apple Oatmeal ➔ Pear & Blueberry Oatmeal (Attribute: pome fruit)": {
             "recipe_id": "microwave-apple-cinnamon-oatmeal",
             "old_ing": "1/2 apple, diced",
             "mode": "Swap using Attributes",
-            "attr": "fruit",
+            "attr": "pome fruit",
             "new_food": "Pears",
         },
     }
@@ -650,52 +652,81 @@ def page_experimental_replacer() -> None:
 
     if swap_mode == "Swap using Attributes":
         target_attrs = matched_target.get("attributes", []) if matched_target else []
-        all_attrs = get_all_attributes()
-        attr_options = target_attrs + [a for a in all_attrs if a not in target_attrs]
-
-        default_attr_idx = 0
-        if preset_data and preset_data.get("attr") in attr_options:
-            default_attr_idx = attr_options.index(preset_data["attr"])
-
-        c_att1, c_att2, c_att3 = st.columns([1.2, 1, 1.8])
-        chosen_attr = c_att1.selectbox(
-            "Attribute to match",
-            attr_options,
-            index=default_attr_idx,
-            help="Select a culinary or nutritional property to find comparable alternatives",
-            key=f"adv_attr_choice_{selected_recipe.id}_{preset_choice}",
-        )
-        pref_tol = c_att2.multiselect(
-            "Tolerance",
-            ["safer", "caution", "avoid"],
-            default=["safer"],
-            format_func=lambda s: {"safer": "🟢 SAFER", "caution": "🟡 CAUTION", "avoid": "🔴 AVOID"}.get(s, s.upper()),
-            key=f"adv_attr_tol_{preset_choice}",
-        )
-        raw_candidates = get_foods_by_attribute(chosen_attr)
-        filtered_candidates = [
-            f
-            for f in raw_candidates
-            if f["status"] in pref_tol
-            and (not matched_target or f["name"].lower() != matched_target["name"].lower())
-        ]
-        if not filtered_candidates:
-            c_att3.warning(f"No '{chosen_attr}' foods found with selected tolerance.")
-        else:
-            default_rep_idx = 0
-            if preset_data and preset_data.get("new_food"):
-                default_rep_idx = find_idx(
-                    filtered_candidates,
-                    lambda f: f["name"].lower() == preset_data["new_food"].lower(),
-                    0,
-                )
-            replacement_food = c_att3.selectbox(
-                "Replacement food",
-                filtered_candidates,
-                index=default_rep_idx,
-                format_func=lambda f: f"{f['name']} ({f['status'].upper()}) - ${f.get('cost_per_lb', 0):.2f}/lb • ${f.get('cost_per_kg', 0):.2f}/kg",
-                key=f"adv_attr_replacement_{preset_choice}",
+        if not target_attrs:
+            st.warning(
+                f"No culinary or nutritional attributes are recorded for '{selected_ing}'. "
+                "Please choose **Swap by Specified Ingredient** to replace this item.",
+                icon="⚠️",
             )
+        else:
+            attr_options = list(target_attrs)
+
+            default_attrs = []
+            if preset_data and preset_data.get("attr"):
+                p_attr = preset_data["attr"]
+                p_list = p_attr if isinstance(p_attr, list) else [p_attr]
+                default_attrs = [a for a in p_list if a in attr_options]
+            if not default_attrs and attr_options:
+                default_attrs = [attr_options[0]]
+
+            safe_ing_key = re.sub(r"[^a-zA-Z0-9]", "", selected_ing)
+            c_att1, c_att2, c_att3 = st.columns([1.5, 0.9, 1.8])
+            chosen_attrs = c_att1.multiselect(
+                "Attributes to match",
+                attr_options,
+                default=default_attrs,
+                help=f"Select one or more attributes belonging to '{matched_target['name']}': {', '.join(target_attrs)}",
+                key=f"adv_attr_choice_{selected_recipe.id}_{safe_ing_key}_{preset_choice}",
+            )
+            match_mode = "all"
+            if len(chosen_attrs) > 1:
+                match_rule = c_att1.radio(
+                    "Match rule",
+                    ["Match ALL selected (AND)", "Match ANY selected (OR)"],
+                    horizontal=True,
+                    index=0,
+                    key=f"adv_attr_rule_{selected_recipe.id}_{safe_ing_key}_{preset_choice}",
+                )
+                match_mode = "all" if "ALL" in match_rule else "any"
+
+            pref_tol = c_att2.multiselect(
+                "Tolerance",
+                ["safer", "caution", "avoid"],
+                default=["safer"],
+                format_func=lambda s: {"safer": "🟢 SAFER", "caution": "🟡 CAUTION", "avoid": "🔴 AVOID"}.get(s, s.upper()),
+                key=f"adv_attr_tol_{preset_choice}",
+            )
+
+            if not chosen_attrs:
+                c_att3.info("Select at least one attribute to match.")
+            else:
+                raw_candidates = get_foods_by_attributes(chosen_attrs, match_mode=match_mode)
+                filtered_candidates = [
+                    f
+                    for f in raw_candidates
+                    if f["status"] in pref_tol
+                    and (not matched_target or f["name"].lower() != matched_target["name"].lower())
+                ]
+                if not filtered_candidates:
+                    if match_mode == "all" and len(chosen_attrs) > 1:
+                        c_att3.warning(f"No foods found matching ALL {len(chosen_attrs)} selected attributes with selected tolerance. Try 'Match ANY' or broaden tolerance.")
+                    else:
+                        c_att3.warning("No foods found matching the selected attribute(s) and tolerance.")
+                else:
+                    default_rep_idx = 0
+                    if preset_data and preset_data.get("new_food"):
+                        default_rep_idx = find_idx(
+                            filtered_candidates,
+                            lambda f: f["name"].lower() == preset_data["new_food"].lower(),
+                            0,
+                        )
+                    replacement_food = c_att3.selectbox(
+                        "Replacement food",
+                        filtered_candidates,
+                        index=default_rep_idx,
+                        format_func=lambda f: f"{f['name']} ({f['status'].upper()}) - ${f.get('cost_per_lb', 0):.2f}/lb • ${f.get('cost_per_kg', 0):.2f}/kg",
+                        key=f"adv_attr_replacement_{preset_choice}",
+                    )
 
     else:
         c_grp1, c_grp2, c_grp3 = st.columns([1.2, 1, 1.8])

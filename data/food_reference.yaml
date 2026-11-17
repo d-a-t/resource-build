@@ -1453,6 +1453,12 @@
       - sweetener
       - sweet
       cost_per_kg: 2.2
+    - name: Refined sugar
+      status: caution
+      attributes:
+      - sweetener
+      - sweet
+      cost_per_kg: 1.2
     - name: Monk fruit
       status: safer
       attributes:

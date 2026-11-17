@@ -593,12 +593,39 @@ def match_ingredient_to_food(ing_str: str, foods: list[dict] | None = None) -> d
     return best_match
 
 
-def get_foods_by_attribute(attribute: str, foods: list[dict] | None = None) -> list[dict]:
-    """Return all food items containing a specific attribute tag."""
+def get_foods_by_attributes(
+    attributes: list[str],
+    match_mode: str = "all",
+    foods: list[dict] | None = None,
+) -> list[dict]:
+    """Return all food items matching a collection of attribute tags.
+
+    match_mode='all' requires every attribute in `attributes` to be present (intersection).
+    match_mode='any' requires at least one attribute to be present (union).
+    """
     if foods is None:
         foods = get_all_food_items()
-    attr_lower = attribute.lower().strip()
-    return [it for it in foods if attr_lower in [a.lower() for a in it.get("attributes", [])]]
+    if not attributes:
+        return []
+    target_set = {a.lower().strip() for a in attributes if a.strip()}
+    if not target_set:
+        return []
+
+    result = []
+    for it in foods:
+        it_attrs = {a.lower().strip() for a in it.get("attributes", [])}
+        if match_mode == "all":
+            if target_set.issubset(it_attrs):
+                result.append(it)
+        else:
+            if target_set & it_attrs:
+                result.append(it)
+    return result
+
+
+def get_foods_by_attribute(attribute: str, foods: list[dict] | None = None) -> list[dict]:
+    """Return all food items containing a specific attribute tag."""
+    return get_foods_by_attributes([attribute], match_mode="all", foods=foods)
 
 
 def load_meal_plan() -> list[dict]:
