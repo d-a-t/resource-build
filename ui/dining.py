@@ -4,7 +4,7 @@ from __future__ import annotations
 import html
 import streamlit as st
 
-from lib.dining import fetch_nutrislice_menu, parse_nutrislice_url
+from lib.dining import AVAILABLE_DINING_HALLS, fetch_nutrislice_menu, parse_nutrislice_url
 from ui.common import disclaimer, md
 
 
@@ -31,48 +31,70 @@ def page_dining() -> None:
             "fermented items, aged cheeses, cured meats, and histamine liberators."
         )
 
-        default_url = "https://techdining.nutrislice.com/menu/brittain/lunch/2026-11-17"
-        url_input = st.text_input(
-            "Enter Tech Dining Nutrislice URL (or use quick controls below):",
-            value=default_url,
-            help="Paste any menu URL from techdining.nutrislice.com",
-            key="dining_nutrislice_url",
+        st.markdown("#### 🏛️ Campus Dining Locations")
+        st.caption(
+            "Select an available dining hall or paste its URL directly. Available locations:\n"
+            "- [Brittain](https://techdining.nutrislice.com/menu/brittain)\n"
+            "- [North Ave Dining Hall](https://techdining.nutrislice.com/menu/north-ave-dining-hall)\n"
+            "- [West Village](https://techdining.nutrislice.com/menu/west-village)"
         )
+
+        avail_hall_keys = list(AVAILABLE_DINING_HALLS.keys())
+        default_hall_key = "brittain"
+
+        if "dining_nutrislice_url" not in st.session_state:
+            st.session_state["dining_nutrislice_url"] = AVAILABLE_DINING_HALLS[default_hall_key]["url"]
+
+        def _on_hall_select_change() -> None:
+            chosen = st.session_state.get("dining_hall_choice")
+            if chosen in AVAILABLE_DINING_HALLS:
+                st.session_state["dining_nutrislice_url"] = AVAILABLE_DINING_HALLS[chosen]["url"]
+
+        col_hall, col_url = st.columns([1.2, 1.8])
+        with col_hall:
+            chosen_school_key = st.selectbox(
+                "Select Available Dining Hall",
+                options=avail_hall_keys,
+                format_func=lambda k: AVAILABLE_DINING_HALLS[k]["name"],
+                key="dining_hall_choice",
+                on_change=_on_hall_select_change,
+            )
+
+        with col_url:
+            url_input = st.text_input(
+                "Nutrislice URL (paste or edit)",
+                key="dining_nutrislice_url",
+                help="Available URLs:\n- https://techdining.nutrislice.com/menu/brittain\n- https://techdining.nutrislice.com/menu/north-ave-dining-hall\n- https://techdining.nutrislice.com/menu/west-village",
+            )
 
         parsed = parse_nutrislice_url(url_input)
+        school = parsed["school"] if parsed["school"] in AVAILABLE_DINING_HALLS else chosen_school_key
 
-        c1, c2, c3, c4 = st.columns([1.2, 1, 1, 0.8])
-        school_options = {
-            "brittain": "Brittain Dining Hall",
-            "north-ave": "North Avenue Dining Hall",
-            "west-village": "West Village Dining",
-            "john-lewis-student-center": "Student Center",
-        }
-        school_keys = list(school_options.keys())
-        school_idx = school_keys.index(parsed["school"]) if parsed["school"] in school_keys else 0
-        chosen_school = c1.selectbox(
-            "Dining Hall",
-            school_keys,
-            index=school_idx,
-            format_func=lambda k: school_options.get(k, k),
-            key="dining_school_select",
-        )
-
+        c1, c2, c3 = st.columns([1, 1, 0.8])
         meal_options = ["lunch", "dinner", "breakfast"]
         meal_idx = meal_options.index(parsed["menu_type"]) if parsed["menu_type"] in meal_options else 0
-        chosen_meal = c2.selectbox("Meal Period", meal_options, index=meal_idx, key="dining_meal_select")
+        chosen_meal = c1.selectbox("Meal Period", meal_options, index=meal_idx, key="dining_meal_select")
 
-        chosen_date = c3.text_input("Date (YYYY-MM-DD)", value=parsed["date"], key="dining_date_input")
+        chosen_date = c2.text_input("Date (YYYY-MM-DD)", value=parsed["date"], key="dining_date_input")
 
-        with c4:
+        with c3:
             st.write("&nbsp;")
             st.button("🔄 Analyze Menu", use_container_width=True, key="dining_load_btn")
 
-        dishes, err = cached_nutrislice_menu(chosen_school, chosen_meal, chosen_date.strip(), parsed["district"])
+        hall_info = AVAILABLE_DINING_HALLS.get(school, AVAILABLE_DINING_HALLS[default_hall_key])
+        canonical_url = f"{hall_info['url']}/{chosen_meal}/{chosen_date.strip()}"
+        st.caption(f"Currently viewing: **{hall_info['name']}** • [{canonical_url}]({canonical_url})")
+
+        dishes, err = cached_nutrislice_menu(school, chosen_meal, chosen_date.strip(), parsed["district"])
 
         if err:
             st.error(f"Could not load Nutrislice menu: {err}")
-            st.info("Check your URL or date and try again. For testing, use: `https://techdining.nutrislice.com/menu/brittain/lunch/2026-11-17`.")
+            st.info(
+                "Check your URL or date and try again. Available dining hall URLs:\n"
+                "- `https://techdining.nutrislice.com/menu/brittain`\n"
+                "- `https://techdining.nutrislice.com/menu/north-ave-dining-hall`\n"
+                "- `https://techdining.nutrislice.com/menu/west-village`"
+            )
             return
 
         if not dishes:
@@ -128,7 +150,7 @@ def page_dining() -> None:
                     continue
             filtered.append(d)
 
-        st.caption(f"Showing **{len(filtered)}** of **{len(dishes)}** dishes for **{school_options.get(chosen_school, chosen_school)}** ({chosen_meal.title()}, {chosen_date}).")
+        st.caption(f"Showing **{len(filtered)}** of **{len(dishes)}** dishes for **{hall_info['name']}** ({chosen_meal.title()}, {chosen_date}).")
 
         # Group filtered dishes by station
         by_station = {}

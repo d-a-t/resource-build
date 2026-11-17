@@ -35,45 +35,77 @@ CAUTION_PATTERNS = [
     (r"\b(cracked\s*wheat|bread|bun|roll|crust|bagel|tortilla|pita)\b", "Commercial yeast-baked bread / gluten"),
 ]
 
+# Available campus dining hall endpoints
+AVAILABLE_DINING_HALLS = {
+    "brittain": {
+        "slug": "brittain",
+        "name": "Brittain Dining Hall",
+        "url": "https://techdining.nutrislice.com/menu/brittain",
+    },
+    "north-ave-dining-hall": {
+        "slug": "north-ave-dining-hall",
+        "name": "North Ave Dining Hall",
+        "url": "https://techdining.nutrislice.com/menu/north-ave-dining-hall",
+    },
+    "west-village": {
+        "slug": "west-village",
+        "name": "West Village Dining",
+        "url": "https://techdining.nutrislice.com/menu/west-village",
+    },
+}
 
-def parse_nutrislice_url(url_or_text: str) -> dict[str, str]:
+
+def parse_nutrislice_url(url_or_text: str, default_date: str = "2026-11-17", default_meal: str = "lunch") -> dict[str, str]:
     """Parse a Nutrislice URL to extract district, school, menu_type, and date.
 
-    Example URL:
+    Supports:
+        https://techdining.nutrislice.com/menu/brittain
+        https://techdining.nutrislice.com/menu/north-ave-dining-hall
+        https://techdining.nutrislice.com/menu/west-village
         https://techdining.nutrislice.com/menu/brittain/lunch/2026-11-17
     """
     clean_url = url_or_text.strip()
+    clean_path = clean_url.split("?")[0].split("#")[0].rstrip("/")
 
     # Extract district (e.g. techdining from techdining.nutrislice.com)
     district_match = re.search(r"https?://([^.]+)\.(?:api\.)?nutrislice\.com", clean_url)
     district = district_match.group(1) if district_match else "techdining"
 
+    school = "brittain"
+    menu_type = default_meal
+    date_str = default_date
+
     # Match /menu/<school>/<menu-type>/<YYYY-MM-DD>
-    full_match = re.search(r"/menu/([^/]+)/([^/]+)/(\d{4}-\d{2}-\d{2})", clean_url)
+    full_match = re.search(r"/menu/([^/?#]+)/([^/?#]+)/(\d{4}-\d{2}-\d{2})", clean_path)
     if full_match:
-        return {
-            "district": district,
-            "school": full_match.group(1),
-            "menu_type": full_match.group(2),
-            "date": full_match.group(3),
-        }
+        school = full_match.group(1)
+        menu_type = full_match.group(2)
+        date_str = full_match.group(3)
+    else:
+        # Match /menu/<school>/<menu-type>
+        partial_match = re.search(r"/menu/([^/?#]+)/([^/?#]+)", clean_path)
+        if partial_match:
+            school = partial_match.group(1)
+            menu_type = partial_match.group(2)
+        else:
+            # Match base: /menu/<school>
+            base_match = re.search(r"/menu/([^/?#]+)", clean_path)
+            if base_match:
+                school = base_match.group(1)
 
-    # Match /menu/<school>/<menu-type> (without date)
-    partial_match = re.search(r"/menu/([^/]+)/([^/]+)", clean_url)
-    if partial_match:
-        return {
-            "district": district,
-            "school": partial_match.group(1),
-            "menu_type": partial_match.group(2),
-            "date": "2026-11-17",
-        }
+    # Normalize alias if needed
+    if school in ("north-ave", "north-avenue", "north-ave-dining", "nah"):
+        school = "north-ave-dining-hall"
+    elif school in ("west", "wv"):
+        school = "west-village"
+    elif school in ("brit", "britt"):
+        school = "brittain"
 
-    # Fallback to default
     return {
-        "district": "techdining",
-        "school": "brittain",
-        "menu_type": "lunch",
-        "date": "2026-11-17",
+        "district": district,
+        "school": school,
+        "menu_type": menu_type,
+        "date": date_str,
     }
 
 
