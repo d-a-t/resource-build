@@ -1,0 +1,24 @@
+# DRAFT: cost and food-safety details need verification (set verified: true when checked).
+id: turkey-zucchini-patties
+title: Turkey and Zucchini Patties
+servings: 2
+prep_minutes: 10
+cook_minutes: 12
+cost_per_serving: 2.0
+equipment:
+- Skillet
+ingredients:
+- 1/2 lb fresh ground turkey
+- 1/2 zucchini, grated and squeezed dry
+- 1/4 cup oats
+- Salt
+- Fresh herbs
+method:
+- Mix all ingredients and form patties.
+- Pan-cook 5 to 6 minutes per side until cooked through.
+storage: Freeze cooked patties individually.
+tags:
+- skillet
+- freezer-friendly
+- batch-cook
+verified: false

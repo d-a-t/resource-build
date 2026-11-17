@@ -1,0 +1,27 @@
+# DRAFT: cost and food-safety details need verification (set verified: true when checked).
+id: skillet-beef-potato-hash
+title: Skillet Beef and Potato Hash
+servings: 1
+prep_minutes: 10
+cook_minutes: 25
+cost_per_serving: 2.5
+equipment:
+- Skillet
+- Hot plate or stove
+ingredients:
+- 1/2 lb fresh ground beef
+- 2 potatoes, diced
+- 1/2 onion, diced
+- 1 tbsp olive oil
+- Salt
+- 1 clove fresh garlic
+method:
+- Cook potatoes in oil until golden.
+- Add onion, beef, garlic, and salt.
+- Cook until the beef is done.
+storage: Freeze portions within an hour of cooking.
+tags:
+- skillet
+- dinner
+- batch-cook
+verified: false

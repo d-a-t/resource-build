@@ -1,0 +1,24 @@
+# DRAFT: cost and food-safety details need verification (set verified: true when checked).
+id: microwave-apple-cinnamon-oatmeal
+title: Microwave Apple Cinnamon Oatmeal
+servings: 1
+prep_minutes: 2
+cook_minutes: 3
+cost_per_serving: 0.75
+equipment:
+- Microwave
+- Microwave-safe bowl
+ingredients:
+- 1/2 cup oats
+- 1 cup water
+- 1/2 apple, diced
+- Cinnamon
+method:
+- Microwave oats and water 2 to 3 minutes.
+- Stir in the apple and cinnamon.
+storage: Make fresh each time.
+tags:
+- microwave
+- breakfast
+- dorm-friendly
+verified: false

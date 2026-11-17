@@ -1,0 +1,27 @@
+# DRAFT: cost and food-safety details need verification (set verified: true when checked).
+id: microwave-sweet-potato-turkey
+title: Microwave Sweet Potato with Turkey
+description: Fast and filling, with only a microwave and a small skillet.
+servings: 1
+prep_minutes: 5
+cook_minutes: 15
+cost_per_serving: 2.25
+equipment:
+- Microwave
+- Small skillet
+ingredients:
+- 1 sweet potato
+- 1/4 lb fresh ground turkey
+- 1 tsp olive oil
+- Salt
+- Fresh herbs
+method:
+- Pierce the sweet potato and microwave 5 to 8 minutes until soft.
+- Brown the turkey in oil with salt and herbs until cooked through.
+- Pile the turkey on top of the split potato.
+storage: Cook turkey fresh. Freeze extra turkey in portions.
+tags:
+- microwave
+- dinner
+- dorm-friendly
+verified: false

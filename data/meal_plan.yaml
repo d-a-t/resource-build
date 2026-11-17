@@ -1,0 +1,19 @@
+# Each meal is either {recipe: <recipe id>} or {text: "free text"}.
+- day: Day 1
+  meals:
+    Breakfast: {recipe: microwave-apple-cinnamon-oatmeal}
+    Lunch: {text: "Dining hall: plain grilled chicken, rice, steamed vegetables (verify availability)"}
+    Dinner: {recipe: rice-cooker-chicken-carrot-rice}
+    Snack: {text: "Fresh apple or pear"}
+- day: Day 2
+  meals:
+    Breakfast: {text: "Plain eggs (if tolerated) and a baked potato"}
+    Lunch: {recipe: one-pot-chicken-potato-soup}
+    Dinner: {recipe: skillet-beef-potato-hash}
+    Snack: {text: "Blueberries"}
+- day: Day 3
+  meals:
+    Breakfast: {recipe: microwave-apple-cinnamon-oatmeal}
+    Lunch: {recipe: turkey-zucchini-patties}
+    Dinner: {recipe: microwave-sweet-potato-turkey}
+    Snack: {text: "Rice cakes with butter"}

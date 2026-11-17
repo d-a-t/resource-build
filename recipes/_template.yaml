@@ -1,0 +1,25 @@
+# Copy this file, rename it (e.g. my-recipe.yaml), and fill it in.
+# Files starting with "_" are ignored by the site.
+# Run `python validate_recipes.py` to check your file.
+
+id: my-recipe-name            # unique; letters, numbers, - and _ only
+title: My Recipe Name
+description: One sentence about the recipe (optional).
+servings: 1                   # whole number
+prep_minutes: 10              # whole number
+cook_minutes: 20              # whole number
+cost_per_serving: 2.00        # estimated US dollars
+equipment:
+  - Rice cooker
+ingredients:
+  - 1 cup rice
+  - Salt
+method:
+  - First step.
+  - Second step.
+storage: Freeze portions right after cooking.
+tags:                         # optional; used for filtering
+  - dinner
+notes: Optional tip, such as an ingredient swap.
+verified: false               # true once costs and safety are checked
+source: ""                    # optional citation or where the idea came from
