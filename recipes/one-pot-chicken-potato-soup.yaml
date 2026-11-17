@@ -1,6 +1,7 @@
 # DRAFT: cost and food-safety details need verification (set verified: true when checked).
 id: one-pot-chicken-potato-soup
 title: One-Pot Chicken and Potato Soup
+category: basic
 description: Makes four servings. Freezes well.
 servings: 4
 prep_minutes: 15
@@ -28,3 +29,10 @@ tags:
 - freezer-friendly
 notes: Use water, not store-bought broth, which is often high in histamine.
 verified: false
+alternates:
+  "1 lb fresh chicken thighs or breasts":
+    - "1 lb fresh ground turkey (poultry equivalent)"
+    - "1 lb pasture-raised beef (protein equivalent)"
+  "3 potatoes, cubed":
+    - "3 sweet potatoes, cubed (starches / root veggies equivalent)"
+    - "2 parsnips, cubed (root veggies equivalent)"

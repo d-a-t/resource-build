@@ -1,0 +1,32 @@
+# DRAFT: cost and food-safety details need verification (set verified: true when checked).
+id: one-pot-turkey-sweet-potato-soup
+title: One-Pot Turkey and Sweet Potato Soup
+category: advanced
+description: Makes four servings. Freezes well.
+servings: 4
+prep_minutes: 15
+cook_minutes: 40
+cost_per_serving: 1.66
+equipment:
+- Large pot
+- Stove or hot plate
+ingredients:
+- 1 lb fresh ground turkey
+- 3 sweet potatoes, cubed
+- 2 carrots, sliced
+- 1/2 onion
+- 6 cups water
+- Salt
+- Fresh herbs
+method:
+- Simmer everything in water until the turkey is cooked through.
+- Shred or break up the turkey and return it to the pot.
+- Portion and freeze right away.
+storage: Freeze in single portions right after cooking.
+tags:
+- one-pot
+- batch-cook
+- freezer-friendly
+- advanced-swap
+notes: 'Advanced Recipe swap: Adapted from One-Pot Chicken and Potato Soup. Swapped chicken with fresh un-aged turkey (attribute: poultry) and potatoes with sweet potatoes (attribute: starches / root veggies).'
+verified: false

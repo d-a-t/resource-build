@@ -1,0 +1,32 @@
+# DRAFT: cost and food-safety details need verification (set verified: true when checked).
+id: rice-cooker-salmon-carrot-rice
+title: Rice Cooker Salmon and Carrot Rice
+category: advanced
+description: One-pot dorm-friendly meal using flash-frozen wild salmon rich in anti-inflammatory omega-3s.
+servings: 1
+prep_minutes: 5
+cook_minutes: 25
+cost_per_serving: 4.06
+equipment:
+- Rice cooker
+ingredients:
+- 1 cup rice
+- 1 salmon fillet (gutted and frozen within minutes of catch)
+- 1 carrot, diced
+- 1 tbsp olive oil
+- Salt
+- 1 clove fresh garlic
+method:
+- Rinse rice and place in rice cooker bowl with appropriate water level.
+- Layer diced carrot and minced garlic over the rice.
+- Place flash-frozen wild salmon fillet on top with olive oil and salt.
+- Close lid and start standard cook cycle.
+- Flake salmon and mix gently with rice when done.
+storage: Freeze any leftover portions immediately (do not store cooked fish in fridge).
+tags:
+- dorm-friendly
+- rice-cooker
+- omega-3
+- advanced-swap
+notes: 'Advanced Recipe swap: Adapted from Rice Cooker Chicken and Carrot Rice. Swapped chicken with flash-frozen wild salmon (gutted and frozen within minutes of catch, safer Meat and fish status) for anti-inflammatory omega-3 fatty acids.'
+verified: false

@@ -1,0 +1,31 @@
+# DRAFT: cost and food-safety details need verification (set verified: true when checked).
+id: microwave-pear-blueberry-cinnamon-oatmeal
+title: Microwave Pear and Blueberry Cinnamon Oatmeal
+category: advanced
+description: Quick antioxidant-rich dorm breakfast sweetened naturally with fresh blueberries and pear.
+servings: 1
+prep_minutes: 3
+cook_minutes: 3
+cost_per_serving: 0.77
+equipment:
+- Microwave
+- Microwave-safe bowl
+ingredients:
+- 1/2 cup oats
+- 1 cup water
+- 1/2 pear, diced
+- 1/4 cup blueberries
+- Cinnamon
+method:
+- Combine oats and water in a microwave-safe bowl.
+- Microwave on high for 2 minutes (watch so it does not overflow).
+- Stir in diced fresh pear, blueberries, and cinnamon.
+- Microwave for 30 more seconds if you prefer softer fruit.
+storage: Make fresh; do not store.
+tags:
+- dorm-friendly
+- microwave
+- breakfast
+- advanced-swap
+notes: 'Advanced Recipe swap: Adapted from Microwave Apple Cinnamon Oatmeal. Swapped apples with fresh ripe pears and blueberries (attribute: fruit, sweet, antioxidant) for a seasonal low-histamine breakfast.'
+verified: false

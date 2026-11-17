@@ -1,6 +1,7 @@
 # DRAFT: cost and food-safety details need verification (set verified: true when checked).
 id: rice-cooker-chicken-carrot-rice
 title: Rice Cooker Chicken and Carrot Rice
+category: basic
 description: A one-step dinner that cooks while you study.
 servings: 1
 prep_minutes: 10
@@ -25,3 +26,9 @@ tags:
 - dinner
 - dorm-friendly
 verified: false
+alternates:
+  "1 chicken breast, diced small":
+    - "1 salmon fillet (gutted and frozen within minutes of catch)"
+    - "1/2 lb ground turkey"
+  "1 cup rice":
+    - "1 cup quinoa (rinsed)"

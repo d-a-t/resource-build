@@ -1,0 +1,33 @@
+# DRAFT: cost and food-safety details need verification (set verified: true when checked).
+id: skillet-lamb-sweet-potato-hash
+title: Skillet Lamb and Sweet Potato Hash
+category: advanced
+description: Hearty, nutrient-rich hash made with pasture-raised ground lamb and sweet potatoes.
+servings: 1
+prep_minutes: 10
+cook_minutes: 20
+cost_per_serving: 4.77
+equipment:
+- Skillet or frying pan
+- Stove or hot plate
+- Spatula
+ingredients:
+- 1/2 lb fresh ground lamb
+- 2 sweet potatoes, diced
+- 1/2 onion, diced
+- 1 tbsp olive oil
+- Salt
+- 1 clove fresh garlic
+method:
+- Heat olive oil in a skillet over medium heat.
+- Add diced sweet potatoes and cook until they begin to soften (about 10 minutes).
+- Add fresh ground lamb, diced onion, and minced garlic; cook thoroughly until lamb is browned and sweet potatoes are tender.
+- Season with salt and serve immediately, freezing extra portions if cooking in bulk.
+storage: Eat immediately or freeze portions right after cooking.
+tags:
+- skillet
+- quick
+- nutrient-dense
+- advanced-swap
+notes: 'Advanced Recipe swap: Adapted from Skillet Beef and Potato Hash. Swapped ground beef with pasture-raised ground lamb (attribute: red meat, savory) and russet potatoes with sweet potatoes (attribute: root veggies, starches).'
+verified: false

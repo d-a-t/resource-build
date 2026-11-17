@@ -1,6 +1,7 @@
 # DRAFT: cost and food-safety details need verification (set verified: true when checked).
 id: microwave-sweet-potato-turkey
 title: Microwave Sweet Potato with Turkey
+category: basic
 description: Fast and filling, with only a microwave and a small skillet.
 servings: 1
 prep_minutes: 5

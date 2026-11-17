@@ -4,6 +4,7 @@
 
 id: my-recipe-name            # unique; letters, numbers, - and _ only
 title: My Recipe Name
+category: basic                # basic or advanced
 description: One sentence about the recipe (optional).
 servings: 1                   # whole number
 prep_minutes: 10              # whole number

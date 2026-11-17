@@ -1,6 +1,7 @@
 # DRAFT: cost and food-safety details need verification (set verified: true when checked).
 id: baked-potato-broccoli
 title: Baked Potato with Butter and Broccoli
+category: basic
 servings: 1
 prep_minutes: 3
 cook_minutes: 10

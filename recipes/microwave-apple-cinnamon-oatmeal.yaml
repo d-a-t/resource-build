@@ -1,6 +1,7 @@
 # DRAFT: cost and food-safety details need verification (set verified: true when checked).
 id: microwave-apple-cinnamon-oatmeal
 title: Microwave Apple Cinnamon Oatmeal
+category: basic
 servings: 1
 prep_minutes: 2
 cook_minutes: 3

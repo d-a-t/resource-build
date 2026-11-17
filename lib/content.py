@@ -2,9 +2,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import functools
 import html
 from pathlib import Path
 from typing import Any
+import re
 import urllib.parse
 
 import yaml
@@ -200,6 +202,7 @@ ATTRIBUTE_TAXONOMY: dict[str, list[str]] = {
 }
 
 
+@functools.lru_cache(maxsize=16)
 def _load(name: str) -> Any:
     path = DATA / name
     return yaml.safe_load(path.read_text(encoding="utf-8"))
@@ -516,6 +519,86 @@ def get_food_reference_table_rows(
             }
         )
     return rows
+
+
+def singularize(w: str) -> str:
+    """Normalize simple English plurals for food ingredient matching."""
+    if w.endswith("ies") and len(w) > 4:
+        return w[:-3] + "y"
+    if w.endswith("oes") and len(w) > 4:
+        return w[:-2]
+    if w.endswith("s") and not w.endswith("ss") and len(w) > 2:
+        return w[:-1]
+    return w
+
+
+def pluralize(w: str) -> str:
+    """Pluralize simple English food names."""
+    if w.endswith(("s", "x", "z", "ch", "sh", "o")):
+        return w + "es"
+    if w.endswith("y") and len(w) > 1 and w[-2].lower() not in "aeiou":
+        return w[:-1] + "ies"
+    return w + "s"
+
+
+def match_ingredient_to_food(ing_str: str, foods: list[dict] | None = None) -> dict | None:
+    """Match a recipe ingredient string to a canonical food reference item.
+
+    Handles measurements, preparations (diced, sliced, ground), and pluralization.
+    """
+    if foods is None:
+        foods = get_all_food_items()
+
+    ing_lower = ing_str.lower()
+    cleaned_ing = re.sub(
+        r"[\d\./]+|\b(cup|cups|tbsp|tsp|clove|cloves|lb|lbs|oz|large|small|medium|fresh|plain|ground|diced|sliced|cubed|grated|squeezed|dry|cooked)\b",
+        " ",
+        ing_lower,
+    )
+    ing_words = set(re.findall(r"[a-z]+", cleaned_ing))
+    ing_singles = {singularize(w) for w in ing_words}
+
+    sorted_foods = sorted(foods, key=lambda f: len(f["name"]), reverse=True)
+    best_match = None
+    best_score = 0
+
+    for f in sorted_foods:
+        fname = f["name"].lower()
+        clean_name = re.sub(r"\(.*?\)", "", fname).strip()
+        f_words = set(re.findall(r"[a-z]+", clean_name))
+        f_singles = {singularize(w) for w in f_words}
+        if f_singles and f_singles.issubset(ing_singles):
+            score = len(f_singles) * 10
+            if score > best_score:
+                best_score = score
+                best_match = f
+
+    if best_match:
+        return best_match
+
+    for f in sorted_foods:
+        fname = f["name"].lower()
+        clean_name = re.sub(r"\(.*?\)", "", fname).strip()
+        f_words = set(re.findall(r"[a-z]+", clean_name))
+        f_singles = {singularize(w) for w in f_words}
+        if f_singles and f_singles.intersection(ing_singles):
+            common = f_singles.intersection(ing_singles)
+            meaningful = {w for w in common if w not in ("whole", "fresh", "raw", "plain", "extra", "virgin")}
+            if meaningful:
+                score = len(meaningful) * 5
+                if score > best_score:
+                    best_score = score
+                    best_match = f
+
+    return best_match
+
+
+def get_foods_by_attribute(attribute: str, foods: list[dict] | None = None) -> list[dict]:
+    """Return all food items containing a specific attribute tag."""
+    if foods is None:
+        foods = get_all_food_items()
+    attr_lower = attribute.lower().strip()
+    return [it for it in foods if attr_lower in [a.lower() for a in it.get("attributes", [])]]
 
 
 def load_meal_plan() -> list[dict]:

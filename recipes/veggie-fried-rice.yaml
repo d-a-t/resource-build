@@ -1,6 +1,7 @@
 # DRAFT: cost and food-safety details need verification (set verified: true when checked).
 id: veggie-fried-rice
 title: Veggie Fried Rice (egg optional)
+category: basic
 servings: 1
 prep_minutes: 10
 cook_minutes: 10

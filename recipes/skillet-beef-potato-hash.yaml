@@ -1,6 +1,7 @@
 # DRAFT: cost and food-safety details need verification (set verified: true when checked).
 id: skillet-beef-potato-hash
 title: Skillet Beef and Potato Hash
+category: basic
 servings: 1
 prep_minutes: 10
 cook_minutes: 25
@@ -25,3 +26,9 @@ tags:
 - dinner
 - batch-cook
 verified: false
+alternates:
+  "1/2 lb fresh ground beef":
+    - "1/2 lb fresh ground lamb (savory red meat equivalent)"
+    - "1/2 lb fresh ground turkey (lean poultry equivalent)"
+  "2 potatoes, diced":
+    - "2 sweet potatoes, diced (root veggies equivalent)"

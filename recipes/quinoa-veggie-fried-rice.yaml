@@ -1,0 +1,33 @@
+# DRAFT: cost and food-safety details need verification (set verified: true when checked).
+id: quinoa-veggie-fried-rice
+title: Quinoa Veggie Fried Bowl (egg optional)
+category: advanced
+description: A complete plant-protein twist on fried rice using fluffy cooked quinoa.
+servings: 1
+prep_minutes: 10
+cook_minutes: 15
+cost_per_serving: 2.08
+equipment:
+- Skillet or frying pan
+- Stove or hot plate
+- Spatula
+ingredients:
+- 1 1/2 cups freshly cooked quinoa
+- 1 carrot, diced
+- 1/2 zucchini, diced
+- 1 egg (if tolerated)
+- 1 tbsp olive oil
+- Salt
+method:
+- Heat olive oil in a skillet over medium-high heat.
+- Stir-fry diced carrots and zucchini until crisp-tender (about 4 minutes).
+- Push veggies to the side and scramble the egg in the pan until set (if tolerated).
+- Add freshly cooked quinoa and salt; toss everything together until heated through.
+storage: Freeze any leftover portions right away.
+tags:
+- quick
+- skillet
+- ancient-grain
+- advanced-swap
+notes: 'Advanced Recipe swap: Adapted from Veggie Fried Rice. Swapped white rice with organic quinoa (attribute: starches, ancient grains, protein-rich) for a complete amino acid profile.'
+verified: false
