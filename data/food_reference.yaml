@@ -1432,6 +1432,14 @@
       - mild
       notes: Milder and better tolerated than true black/chili pepper
       cost_per_kg: 35.0
+    - name: Black pepper
+      status: caution
+      attributes:
+      - spice
+      - peppery
+      - pungent
+      notes: Tolerated in low amounts; use sparingly
+      cost_per_kg: 24.0
     - name: Saffron
       status: safer
       attributes:
