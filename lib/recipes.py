@@ -11,6 +11,12 @@ from typing import Any
 
 import yaml
 
+from lib.content import (
+    convert_cost_kg_to_lbs,
+    cost_per_kg_to_cost_per_lb,
+    cost_per_lb_to_cost_per_kg,
+)
+
 ROOT = Path(__file__).resolve().parent.parent
 RECIPE_DIR = ROOT / "recipes"
 

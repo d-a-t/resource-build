@@ -8,30 +8,35 @@
       - poultry
       - savory
       notes: Fresh or frozen un-aged
+      cost_per_kg: 8.5
     - name: Turkey
       status: safer
       attributes:
       - poultry
       - savory
       notes: Fresh or frozen un-aged
+      cost_per_kg: 9.0
     - name: Duck
       status: safer
       attributes:
       - poultry
       - savory
       notes: Fresh or frozen un-aged
+      cost_per_kg: 14.5
     - name: Goose
       status: safer
       attributes:
       - poultry
       - savory
       notes: Fresh or frozen un-aged
+      cost_per_kg: 18.0
     - name: Quail
       status: safer
       attributes:
       - poultry
       - savory
       notes: Fresh or frozen un-aged
+      cost_per_kg: 20.0
   - name: Red Meat & Game
     items:
     - name: Beef
@@ -40,35 +45,41 @@
       - red meat
       - savory
       notes: Fresh or frozen un-aged
+      cost_per_kg: 12.5
     - name: Lamb
       status: safer
       attributes:
       - red meat
       - savory
       notes: Fresh or frozen un-aged
+      cost_per_kg: 16.5
     - name: Pork
       status: safer
       attributes:
       - red meat
       - savory
       notes: Fresh or frozen un-aged
+      cost_per_kg: 9.0
     - name: Bison
       status: safer
       attributes:
       - red meat
       - savory
       notes: Fresh or frozen un-aged
+      cost_per_kg: 22.0
     - name: Ostrich
       status: safer
       attributes:
       - red meat
       - savory
       notes: Fresh or frozen un-aged
+      cost_per_kg: 32.0
     - name: Rabbit
       status: safer
       attributes:
       - savory
       notes: Fresh or frozen un-aged
+      cost_per_kg: 18.5
   - name: Organ Meats
     items:
     - name: Liver
@@ -77,6 +88,7 @@
       - organ meat
       - savory
       notes: Fresh or frozen un-aged
+      cost_per_kg: 6.5
   - name: Fish & Seafood
     items:
     - name: Salmon
@@ -85,17 +97,20 @@
       - fish
       - savory
       notes: Gutted and frozen within minutes of catch
+      cost_per_kg: 22.0
     - name: Fresh fish (uncooked after purchase day)
       status: caution
       attributes:
       - fish
       notes: Fresh fish not cooked the day it is bought
+      cost_per_kg: 18.0
     - name: Canned fish
       status: avoid
       attributes:
       - fish
       - high-histamine
       notes: Tuna, sardines, mackerel, etc.
+      cost_per_kg: 11.0
     - name: Smoked fish
       status: avoid
       attributes:
@@ -103,6 +118,7 @@
       - cured
       - high-histamine
       notes: Smoked salmon, kippers, trout, etc.
+      cost_per_kg: 26.0
     - name: Shellfish
       status: avoid
       attributes:
@@ -110,6 +126,7 @@
       - histamine-liberator
       - high-histamine
       notes: Shrimp, crab, lobster, mussels, oysters, clams
+      cost_per_kg: 24.0
   - name: Processed & Leftover Meats
     items:
     - name: Leftover cooked meat
@@ -117,6 +134,7 @@
       attributes:
       - savory
       notes: Histamine accumulates rapidly in refrigerated cooked meat; freeze immediately
+      cost_per_kg: 8.0
     - name: Cured, smoked, or deli meats
       status: avoid
       attributes:
@@ -124,6 +142,7 @@
       - savory
       - high-histamine
       notes: Salami, bacon, ham, hot dogs, cold cuts
+      cost_per_kg: 16.0
 - group: Eggs and dairy
   subgroups:
   - name: Eggs
@@ -134,12 +153,14 @@
       - eggs
       - fat
       notes: If tolerated; yolks are generally safer than whites
+      cost_per_kg: 4.5
     - name: Egg whites
       status: caution
       attributes:
       - eggs
       - histamine-liberator
       notes: Egg whites can act as histamine liberators in sensitive individuals
+      cost_per_kg: 5.5
   - name: Dairy Fats & Butters
     items:
     - name: Butter
@@ -148,12 +169,14 @@
       - dairy
       - fat
       - savory
+      cost_per_kg: 9.0
     - name: Grass-fed butter
       status: safer
       attributes:
       - dairy
       - fat
       - savory
+      cost_per_kg: 13.5
     - name: Ghee (grass-fed)
       status: safer
       attributes:
@@ -161,6 +184,7 @@
       - fat
       - savory
       notes: Clarified butter; very low lactose and casein
+      cost_per_kg: 19.0
   - name: Fresh Cheeses
     items:
     - name: Fresh cream cheese
@@ -169,18 +193,21 @@
       - dairy
       - mild
       notes: Uncultured/fresh, not aged
+      cost_per_kg: 8.5
     - name: Fresh mozzarella
       status: safer
       attributes:
       - dairy
       - mild
       notes: Fresh in water, un-aged
+      cost_per_kg: 11.5
     - name: Ricotta
       status: safer
       attributes:
       - dairy
       - sweet
       notes: Fresh un-aged whey cheese
+      cost_per_kg: 8.5
   - name: Milks
     items:
     - name: A2 cow milk
@@ -188,19 +215,23 @@
       attributes:
       - dairy
       notes: Better tolerated than conventional A1 cow milk
+      cost_per_kg: 2.8
     - name: Goat milk
       status: safer
       attributes:
       - dairy
+      cost_per_kg: 4.2
     - name: Sheep milk
       status: safer
       attributes:
       - dairy
+      cost_per_kg: 5.5
     - name: Milk (conventional cow milk)
       status: caution
       attributes:
       - dairy
       notes: Conventional A1 milk; varies by person
+      cost_per_kg: 1.4
   - name: Fermented & Aged Dairy
     items:
     - name: Yogurt
@@ -210,6 +241,7 @@
       - fermented
       - tart
       notes: Fermented product; histamine levels depend on culture strains
+      cost_per_kg: 3.8
     - name: Aged cheeses
       status: avoid
       attributes:
@@ -219,6 +251,7 @@
       - pungent
       - high-histamine
       notes: Cheddar, parmesan, blue cheese, gouda, swiss; high histamine from microbial aging
+      cost_per_kg: 18.0
     - name: Kefir
       status: avoid
       attributes:
@@ -227,11 +260,13 @@
       - tart
       - high-histamine
       notes: Fermented milk drink rich in histamine and yeasts
+      cost_per_kg: 4.5
     - name: General unverified dairy
       status: avoid
       attributes:
       - dairy
       notes: General dairy not sourced as grass-fed/pasture-raised where specified
+      cost_per_kg: 5.0
 - group: Vegetables
   subgroups:
   - name: Root Vegetables & Tubers
@@ -241,28 +276,33 @@
       attributes:
       - root veggies
       - sweet
+      cost_per_kg: 2.0
     - name: Sweet potato
       status: safer
       attributes:
       - root veggies
       - starches
       - sweet
+      cost_per_kg: 2.4
     - name: Beets
       status: safer
       attributes:
       - root veggies
       - sweet
       - earthy
+      cost_per_kg: 2.8
     - name: Daikon radishes
       status: safer
       attributes:
       - root veggies
       - peppery
+      cost_per_kg: 2.6
     - name: Jicama
       status: safer
       attributes:
       - root veggies
       - sweet
+      cost_per_kg: 3.2
     - name: Parsnips
       status: safer
       attributes:
@@ -270,41 +310,48 @@
       - starches
       - sweet
       - earthy
+      cost_per_kg: 3.8
     - name: Parsley root
       status: safer
       attributes:
       - root veggies
       - herbal
       - earthy
+      cost_per_kg: 10.0
     - name: Potatoes
       status: safer
       attributes:
       - starches
       - nightshades
       - earthy
+      cost_per_kg: 1.8
     - name: Radishes
       status: safer
       attributes:
       - root veggies
       - peppery
+      cost_per_kg: 3.0
     - name: Rutabaga
       status: safer
       attributes:
       - root veggies
       - starches
       - earthy
+      cost_per_kg: 2.2
     - name: Turnip
       status: safer
       attributes:
       - root veggies
       - earthy
       - peppery
+      cost_per_kg: 2.0
     - name: Celeriac (celery root)
       status: safer
       attributes:
       - root veggies
       - herbal
       - earthy
+      cost_per_kg: 4.0
   - name: Cruciferous (Brassicas)
     items:
     - name: Broccoli
@@ -313,52 +360,61 @@
       - cruciferous
       - savory
       - earthy
+      cost_per_kg: 3.5
     - name: Broccolini
       status: safer
       attributes:
       - cruciferous
       - earthy
+      cost_per_kg: 7.0
     - name: Brussels sprouts
       status: safer
       attributes:
       - cruciferous
       - savory
       - earthy
+      cost_per_kg: 4.5
     - name: Cauliflower
       status: safer
       attributes:
       - cruciferous
       - mild
       - earthy
+      cost_per_kg: 3.5
     - name: Bok choy
       status: safer
       attributes:
       - cruciferous
       - leafy green
       - mild
+      cost_per_kg: 3.0
     - name: Cabbage (Chinese, green, red, Napa)
       status: safer
       attributes:
       - cruciferous
       - leafy green
       - sweet
+      cost_per_kg: 1.8
     - name: Collards
       status: safer
       attributes:
       - cruciferous
       - leafy green
       - earthy
+      cost_per_kg: 3.2
     - name: Kohlrabi
       status: safer
       attributes:
       - cruciferous
       - sweet
+      cost_per_kg: 3.5
     - name: Mizuna
       status: safer
       attributes:
       - cruciferous
       - leafy green
       - peppery
+      cost_per_kg: 8.5
     - name: Mustard greens
       status: safer
       attributes:
@@ -366,6 +422,7 @@
       - leafy green
       - peppery
       - pungent
+      cost_per_kg: 3.8
   - name: Leafy Greens & Salad Greens
     items:
     - name: Arugula
@@ -373,52 +430,62 @@
       attributes:
       - leafy green
       - peppery
+      cost_per_kg: 11.0
     - name: Dandelion greens
       status: safer
       attributes:
       - leafy green
       - bitter
       - herbal
+      cost_per_kg: 8.0
     - name: Escarole
       status: safer
       attributes:
       - leafy green
       - bitter
+      cost_per_kg: 6.0
     - name: Lettuce (butter, endive, green & red, iceberg, radicchio, romaine)
       status: safer
       attributes:
       - leafy green
       - mild
+      cost_per_kg: 9.0
     - name: Mesclun
       status: safer
       attributes:
       - leafy green
+      cost_per_kg: 10.0
     - name: Perilla
       status: safer
       attributes:
       - leafy green
       - herbal
       - aromatic
+      cost_per_kg: 12.0
     - name: Purslane
       status: safer
       attributes:
       - leafy green
       - tart
+      cost_per_kg: 9.0
     - name: Swiss chard
       status: safer
       attributes:
       - leafy green
       - earthy
+      cost_per_kg: 6.5
     - name: Watercress
       status: safer
       attributes:
       - leafy green
       - peppery
+      cost_per_kg: 12.5
     - name: Frozen leafy greens
       status: caution
       attributes:
       - leafy green
       notes: Histamine can accumulate during industrial handling, freezing, and thawing
+      cost_per_kg: 5.0
     - name: Spinach
       status: avoid
       attributes:
@@ -426,6 +493,7 @@
       - high-histamine
       - histamine-liberator
       notes: Naturally high in histamine and acts as a histamine liberator
+      cost_per_kg: 6.0
   - name: Squash & Gourds
     items:
     - name: Zucchini
@@ -433,33 +501,39 @@
       attributes:
       - squash
       - mild
+      cost_per_kg: 2.8
     - name: Butternut squash
       status: safer
       attributes:
       - squash
       - starches
       - sweet
+      cost_per_kg: 9.0
     - name: Spaghetti squash
       status: safer
       attributes:
       - squash
       - mild
+      cost_per_kg: 2.4
     - name: Summer squash
       status: safer
       attributes:
       - squash
       - mild
+      cost_per_kg: 2.4
     - name: Winter squash
       status: safer
       attributes:
       - squash
       - starches
       - sweet
+      cost_per_kg: 2.4
     - name: Yellow squash
       status: safer
       attributes:
       - squash
       - mild
+      cost_per_kg: 2.4
   - name: Alliums
     items:
     - name: Garlic
@@ -469,6 +543,7 @@
       - aromatic
       - pungent
       - savory
+      cost_per_kg: 6.5
     - name: Onions
       status: safer
       attributes:
@@ -476,6 +551,7 @@
       - sweet
       - savory
       - pungent
+      cost_per_kg: 1.8
     - name: Leeks
       status: safer
       attributes:
@@ -483,6 +559,7 @@
       - sweet
       - mild
       - savory
+      cost_per_kg: 4.8
     - name: Scallions / Shallots
       status: safer
       attributes:
@@ -490,12 +567,14 @@
       - pungent
       - mild
       - savory
+      cost_per_kg: 4.5
     - name: Chives
       status: safer
       attributes:
       - allium
       - herbal
       - mild
+      cost_per_kg: 15.0
   - name: Stalks, Stems, Pods & Succulents
     items:
     - name: Artichokes
@@ -503,43 +582,53 @@
       attributes:
       - earthy
       - savory
+      cost_per_kg: 6.5
     - name: Asparagus
       status: safer
       attributes:
       - savory
+      cost_per_kg: 7.5
     - name: Bean sprouts
       status: safer
       attributes:
       - mild
+      cost_per_kg: 2.8
     - name: Celery
       status: safer
       attributes:
       - savory
+      cost_per_kg: 2.5
     - name: Cucumber
       status: safer
       attributes:
       - mild
+      cost_per_kg: 2.8
     - name: Fennel
       status: safer
       attributes:
       - sweet
+      cost_per_kg: 4.5
     - name: Ginger
       status: safer
       attributes:
       - pungent
       - aromatic
+      cost_per_kg: 7.0
     - name: Nopales cactus
       status: safer
       attributes:
       - tart
+      cost_per_kg: 4.0
     - name: Okra
       status: safer
       attributes:
       - mild
+      cost_per_kg: 5.5
     - name: Rhubarb
       status: safer
       attributes:
       - tart
+      cost_per_kg: 5.0
   - name: Fresh Culinary Herbs
     items:
     - name: Basil
@@ -548,19 +637,23 @@
       - herbal
       - aromatic
       - sweet
+      cost_per_kg: 18.0
     - name: Cilantro
       status: safer
       attributes:
       - herbal
+      cost_per_kg: 10.0
     - name: Dill
       status: safer
       attributes:
       - herbal
       - aromatic
+      cost_per_kg: 16.0
     - name: Mint
       status: safer
       attributes:
       - herbal
+      cost_per_kg: 15.0
     - name: Sage
       status: safer
       attributes:
@@ -568,17 +661,20 @@
       - aromatic
       - savory
       - earthy
+      cost_per_kg: 22.0
     - name: Saffron
       status: safer
       attributes:
       - herbal
       - earthy
       - aromatic
+      cost_per_kg: 1200.0
     - name: Fresh herbs (general)
       status: safer
       attributes:
       - herbal
       - aromatic
+      cost_per_kg: 16.0
   - name: Nightshades & Problematic Veggies
     items:
     - name: Tomatoes and tomato sauce
@@ -590,6 +686,7 @@
       - high-histamine
       - histamine-liberator
       notes: Very high in histamine and acts as a histamine liberator
+      cost_per_kg: 3.5
     - name: Eggplant
       status: avoid
       attributes:
@@ -597,12 +694,14 @@
       - savory
       - high-histamine
       notes: Naturally high in histamine
+      cost_per_kg: 4.5
     - name: Avocado
       status: avoid
       attributes:
       - fat
       - high-histamine
       notes: High in histamine and tyramine
+      cost_per_kg: 7.5
   - name: Legumes & Fungi
     items:
     - name: Green split peas
@@ -612,6 +711,7 @@
       - starches
       - savory
       notes: Test slowly; may cause digestive or histamine reactivity in sensitive guts
+      cost_per_kg: 2.5
     - name: Yellow split peas
       status: avoid
       attributes:
@@ -619,6 +719,7 @@
       - starches
       - high-histamine
       notes: Typically higher in biogenic amines / poorly tolerated compared to green peas
+      cost_per_kg: 2.5
     - name: Mushrooms
       status: caution
       attributes:
@@ -626,6 +727,7 @@
       - earthy
       - savory
       notes: Fungi accumulate biogenic amines quickly; consume only if ultra-fresh
+      cost_per_kg: 8.0
   - name: Fermented & Pickled Vegetables
     items:
     - name: Pickles
@@ -635,6 +737,7 @@
       - fermented
       - high-histamine
       notes: Vinegar pickling and storage create high histamine levels
+      cost_per_kg: 4.0
     - name: Sauerkraut
       status: avoid
       attributes:
@@ -642,6 +745,7 @@
       - tart
       - high-histamine
       notes: Lacto-fermented cabbage, extremely high in histamine
+      cost_per_kg: 4.5
 - group: Fruit
   subgroups:
   - name: Pome & Stone Fruit
@@ -652,35 +756,41 @@
       - pome fruit
       - sweet
       - tart
+      cost_per_kg: 3.2
     - name: Pears
       status: safer
       attributes:
       - pome fruit
       - sweet
       - mild
+      cost_per_kg: 3.6
     - name: Apricots
       status: safer
       attributes:
       - stone fruit
       - sweet
       - tart
+      cost_per_kg: 6.0
     - name: Cherries
       status: safer
       attributes:
       - stone fruit
       - sweet
       - tart
+      cost_per_kg: 9.0
     - name: Nectarines
       status: safer
       attributes:
       - stone fruit
       - sweet
       - tart
+      cost_per_kg: 5.5
     - name: Peaches
       status: safer
       attributes:
       - stone fruit
       - sweet
+      cost_per_kg: 5.0
   - name: Berries
     items:
     - name: Blueberries
@@ -688,23 +798,27 @@
       attributes:
       - berry
       - sweet
+      cost_per_kg: 12.0
     - name: Blackberries
       status: safer
       attributes:
       - berry
       - sweet
       - tart
+      cost_per_kg: 14.0
     - name: Cranberries
       status: safer
       attributes:
       - berry
       - tart
+      cost_per_kg: 8.0
     - name: Fresh currants
       status: safer
       attributes:
       - berry
       - tart
       - sweet
+      cost_per_kg: 15.0
     - name: Strawberries
       status: caution
       attributes:
@@ -713,6 +827,7 @@
       - tart
       - histamine-liberator
       notes: Well-known histamine liberator
+      cost_per_kg: 8.0
     - name: Raspberries
       status: caution
       attributes:
@@ -721,6 +836,7 @@
       - tart
       - histamine-liberator
       notes: Histamine liberator; contains natural benzoates
+      cost_per_kg: 16.0
   - name: Melons
     items:
     - name: Cantaloupe / rock melon
@@ -728,21 +844,25 @@
       attributes:
       - melon
       - sweet
+      cost_per_kg: 2.0
     - name: Honeydew
       status: safer
       attributes:
       - melon
       - sweet
+      cost_per_kg: 2.2
     - name: Watermelon
       status: safer
       attributes:
       - melon
       - sweet
+      cost_per_kg: 1.8
     - name: Melon (general)
       status: safer
       attributes:
       - melon
       - sweet
+      cost_per_kg: 1.8
   - name: Tropical & Subtropical Fruit
     items:
     - name: Dragon fruit
@@ -751,49 +871,58 @@
       - tropical
       - mild
       - sweet
+      cost_per_kg: 9.0
     - name: Figs
       status: safer
       attributes:
       - sweet
+      cost_per_kg: 12.0
     - name: Ripe guava
       status: safer
       attributes:
       - tropical
       - sweet
       - aromatic
+      cost_per_kg: 6.5
     - name: Kiwi
       status: safer
       attributes:
       - tropical
       - tart
       - sweet
+      cost_per_kg: 4.5
     - name: Mango
       status: safer
       attributes:
       - tropical
       - sweet
+      cost_per_kg: 4.0
     - name: Passion fruit
       status: safer
       attributes:
       - tropical
       - tart
       - aromatic
+      cost_per_kg: 14.0
     - name: Persimmons / kaki
       status: safer
       attributes:
       - sweet
       - mild
+      cost_per_kg: 5.0
     - name: Plantains
       status: safer
       attributes:
       - tropical
       - starches
       - sweet
+      cost_per_kg: 2.5
     - name: Pomegranate
       status: safer
       attributes:
       - sweet
       - tart
+      cost_per_kg: 5.0
     - name: Bananas
       status: caution
       attributes:
@@ -802,6 +931,7 @@
       - starches
       - histamine-liberator
       notes: Histamine liberator and tyramine; slightly green bananas tolerated better than ripe
+      cost_per_kg: 1.5
     - name: Pineapple
       status: caution
       attributes:
@@ -810,6 +940,7 @@
       - sweet
       - histamine-liberator
       notes: Histamine liberator and high in bromelain/acids
+      cost_per_kg: 3.2
     - name: Citrus (lemon / lime)
       status: caution
       attributes:
@@ -817,6 +948,7 @@
       - tart
       - histamine-liberator
       notes: Used in small amounts if tolerated; histamine liberator
+      cost_per_kg: 3.5
   - name: Dried & Overripe Fruit
     items:
     - name: Dried fruit
@@ -825,6 +957,7 @@
       - sweet
       - high-histamine
       notes: Dates, raisins, prunes; high histamine and sulfites
+      cost_per_kg: 10.0
     - name: Very ripe fruit
       status: avoid
       attributes:
@@ -832,6 +965,7 @@
       - fermented
       - high-histamine
       notes: Histamine increases rapidly as fruit overripens and begins fermenting
+      cost_per_kg: 2.5
 - group: Grains and starches
   subgroups:
   - name: Whole Grains & Pseudocereals
@@ -843,18 +977,21 @@
       - starches
       - gluten-free
       - mild
+      cost_per_kg: 2.2
     - name: Oats
       status: safer
       attributes:
       - grain
       - starches
       notes: Use certified gluten-free if needed
+      cost_per_kg: 2.6
     - name: Amaranth
       status: safer
       attributes:
       - grain
       - starches
       - gluten-free
+      cost_per_kg: 6.5
     - name: Buckwheat / buckwheat flour
       status: safer
       attributes:
@@ -863,12 +1000,14 @@
       - earthy
       - gluten-free
       notes: Naturally gluten-free pseudocereal
+      cost_per_kg: 5.0
     - name: Corn / popcorn
       status: safer
       attributes:
       - grain
       - starches
       - sweet
+      cost_per_kg: 2.5
     - name: Millet
       status: safer
       attributes:
@@ -876,12 +1015,14 @@
       - starches
       - mild
       - gluten-free
+      cost_per_kg: 4.0
     - name: Quinoa
       status: safer
       attributes:
       - grain
       - starches
       - gluten-free
+      cost_per_kg: 7.0
     - name: Sorghum (black / white)
       status: safer
       attributes:
@@ -889,12 +1030,14 @@
       - starches
       - mild
       - gluten-free
+      cost_per_kg: 4.5
     - name: Teff
       status: safer
       attributes:
       - grain
       - starches
       - gluten-free
+      cost_per_kg: 8.0
   - name: Flours & Starches
     items:
     - name: Arrowroot flour
@@ -903,31 +1046,37 @@
       - starches
       - flour
       - gluten-free
+      cost_per_kg: 10.0
     - name: Potato starch
       status: safer
       attributes:
       - starches
       - gluten-free
+      cost_per_kg: 5.5
     - name: Tapioca starch / flour
       status: safer
       attributes:
       - starches
       - flour
       - gluten-free
+      cost_per_kg: 5.0
     - name: Blanched almond flour
       status: safer
       attributes:
       - nut
       - flour
+      cost_per_kg: 14.0
     - name: Otto's cassava flour
       status: safer
       attributes:
       - starches
       - flour
+      cost_per_kg: 12.0
     - name: Flax meal
       status: safer
       attributes:
       - seed
+      cost_per_kg: 6.0
     - name: Tiger nuts / tiger nut flour
       status: safer
       attributes:
@@ -935,6 +1084,7 @@
       - sweet
       - flour
       notes: Tubers, not nuts; naturally sweet and prebiotic
+      cost_per_kg: 15.0
   - name: Pastas, Crackers & Breads
     items:
     - name: Corn or rice pasta
@@ -943,17 +1093,20 @@
       - flour
       - starches
       - gluten-free
+      cost_per_kg: 2.2
     - name: Gluten-free crackers
       status: safer
       attributes:
       - starches
       - gluten-free
+      cost_per_kg: 12.0
     - name: Wheat bread and pasta
       status: caution
       attributes:
       - gluten
       - starches
       notes: Gluten and bakery additives can provoke digestive/mast cell symptoms
+      cost_per_kg: 4.0
     - name: Sourdough and fermented / yeast-heavy breads
       status: avoid
       attributes:
@@ -961,6 +1114,7 @@
       - fermented
       - high-histamine
       notes: Extended yeast and sourdough fermentation results in high histamine
+      cost_per_kg: 6.0
   - name: Starchy Roots & Greens
     items:
     - name: Potatoes
@@ -969,6 +1123,7 @@
       - starches
       - nightshades
       - earthy
+      cost_per_kg: 1.8
     - name: Turnip greens / root
       status: safer
       attributes:
@@ -976,6 +1131,7 @@
       - starches
       - earthy
       - leafy green
+      cost_per_kg: 3.0
 - group: Drinks
   subgroups:
   - name: Water & Hydration
@@ -984,14 +1140,17 @@
       status: safer
       attributes:
       - mild
+      cost_per_kg: 0.1
     - name: Mineral water (plain or carbonated)
       status: safer
       attributes:
       - mild
+      cost_per_kg: 1.2
     - name: Coconut water
       status: safer
       attributes:
       - sweet
+      cost_per_kg: 3.5
     - name: Water with fresh squeezed lemon or lime
       status: caution
       attributes:
@@ -999,6 +1158,7 @@
       - tart
       - histamine-liberator
       notes: Citrus is a histamine liberator; use small amounts if tolerated
+      cost_per_kg: 0.1
   - name: Teas & Infusions
     items:
     - name: Fresh herbal tea
@@ -1006,6 +1166,7 @@
       attributes:
       - mild
       notes: Chamomile, peppermint, lemongrass, dandelion root
+      cost_per_kg: 14.0
     - name: Black tea
       status: caution
       attributes:
@@ -1013,12 +1174,14 @@
       - fermented
       - DAO-blocker
       notes: Fermented tea leaves inhibit DAO enzyme and contain caffeine
+      cost_per_kg: 14.0
     - name: Green tea
       status: caution
       attributes:
       - caffeinated
       - DAO-blocker
       notes: Contains caffeine and tannins that can inhibit DAO
+      cost_per_kg: 14.0
   - name: Fresh Juices
     items:
     - name: Fresh juices of allowed fruits / vegetables
@@ -1026,6 +1189,7 @@
       attributes:
       - sweet
       notes: Freshly pressed and consumed immediately
+      cost_per_kg: 5.0
   - name: Coffee & Caffeinated Beverages
     items:
     - name: Coffee
@@ -1036,6 +1200,7 @@
       - tart
       - DAO-blocker
       notes: Caffeine can trigger histamine release and inhibit DAO
+      cost_per_kg: 16.0
   - name: Alcoholic & Fermented Drinks
     items:
     - name: Alcohol (wine and beer)
@@ -1045,6 +1210,7 @@
       - DAO-blocker
       - high-histamine
       notes: Potent DAO enzyme blocker; fermented drinks carry high biogenic amines
+      cost_per_kg: 8.0
     - name: Kombucha
       status: avoid
       attributes:
@@ -1052,11 +1218,13 @@
       - tart
       - high-histamine
       notes: Fermented tea with live yeast and bacteria, very high in histamine
+      cost_per_kg: 6.0
     - name: Commercial canned or processed drinks
       status: avoid
       attributes:
       - mild
       notes: Sodas, energy drinks, and bottled sweetened teas with preservatives
+      cost_per_kg: 5.0
 - group: Flavor and extras
   subgroups:
   - name: Salts & Cooking Fats / Oils
@@ -1066,6 +1234,7 @@
       attributes:
       - savory
       - spice
+      cost_per_kg: 1.0
     - name: Olive oil (extra virgin)
       status: safer
       attributes:
@@ -1073,6 +1242,7 @@
       - fat
       - savory
       notes: Use cautiously, ensure fresh high quality
+      cost_per_kg: 14.0
     - name: Extra virgin coconut oil
       status: safer
       attributes:
@@ -1080,18 +1250,21 @@
       - fat
       - mild
       - tropical
+      cost_per_kg: 12.0
     - name: Grass-fed butter
       status: safer
       attributes:
       - dairy
       - fat
       - savory
+      cost_per_kg: 13.5
     - name: Grass-fed ghee
       status: safer
       attributes:
       - dairy
       - fat
       notes: Clarified butter; virtually zero milk solids
+      cost_per_kg: 19.0
   - name: Fresh Aromatics
     items:
     - name: Fresh garlic
@@ -1101,6 +1274,7 @@
       - aromatic
       - pungent
       - savory
+      cost_per_kg: 6.5
     - name: Fresh onion
       status: safer
       attributes:
@@ -1108,10 +1282,12 @@
       - sweet
       - savory
       - pungent
+      cost_per_kg: 1.8
     - name: Fresh ginger
       status: safer
       attributes:
       - pungent
+      cost_per_kg: 7.0
   - name: Culinary Herbs
     items:
     - name: Fresh herbs (general)
@@ -1119,75 +1295,89 @@
       attributes:
       - herbal
       - aromatic
+      cost_per_kg: 16.0
     - name: Basil
       status: safer
       attributes:
       - herbal
       - sweet
       - aromatic
+      cost_per_kg: 18.0
     - name: Bay leaves
       status: safer
       attributes:
       - herbal
       - aromatic
       - savory
+      cost_per_kg: 25.0
     - name: Caraway
       status: safer
       attributes:
       - herbal
       - savory
+      cost_per_kg: 20.0
     - name: Chives
       status: safer
       attributes:
       - allium
       - herbal
       - mild
+      cost_per_kg: 15.0
     - name: Cilantro
       status: safer
       attributes:
       - herbal
+      cost_per_kg: 10.0
     - name: Curry leaves
       status: safer
       attributes:
       - herbal
       - aromatic
       - savory
+      cost_per_kg: 25.0
     - name: Dill
       status: safer
       attributes:
       - herbal
       - aromatic
+      cost_per_kg: 16.0
     - name: Lemongrass
       status: safer
       attributes:
       - herbal
+      cost_per_kg: 12.0
     - name: Oregano
       status: safer
       attributes:
       - herbal
       - pungent
       - savory
+      cost_per_kg: 20.0
     - name: Parsley
       status: safer
       attributes:
       - herbal
+      cost_per_kg: 10.0
     - name: Sage
       status: safer
       attributes:
       - herbal
       - savory
       - earthy
+      cost_per_kg: 22.0
     - name: Tarragon
       status: safer
       attributes:
       - herbal
       - sweet
+      cost_per_kg: 22.0
     - name: Thyme
       status: safer
       attributes:
       - herbal
       - earthy
       - savory
+      cost_per_kg: 20.0
   - name: Spices & Seasonings
     items:
     - name: Cardamom
@@ -1196,31 +1386,44 @@
       - spice
       - sweet
       - aromatic
+      cost_per_kg: 45.0
+    - name: Cinnamon
+      status: safer
+      attributes:
+      - spice
+      - sweet
+      - aromatic
+      cost_per_kg: 24.0
     - name: Coriander
       status: safer
       attributes:
       - spice
+      cost_per_kg: 22.0
     - name: Cumin
       status: safer
       attributes:
       - spice
       - earthy
       - savory
+      cost_per_kg: 22.0
     - name: Curcumin powder
       status: safer
       attributes:
       - spice
       - earthy
       - bitter
+      cost_per_kg: 35.0
     - name: Fennel seed
       status: safer
       attributes:
       - spice
       - sweet
+      cost_per_kg: 20.0
     - name: Fenugreek
       status: safer
       attributes:
       - spice
+      cost_per_kg: 20.0
     - name: Pink peppercorns
       status: safer
       attributes:
@@ -1228,17 +1431,20 @@
       - peppery
       - mild
       notes: Milder and better tolerated than true black/chili pepper
+      cost_per_kg: 35.0
     - name: Saffron
       status: safer
       attributes:
       - spice
       - earthy
       - aromatic
+      cost_per_kg: 1200.0
     - name: Turmeric
       status: safer
       attributes:
       - spice
       - earthy
+      cost_per_kg: 25.0
   - name: Sweeteners
     items:
     - name: Unrefined sugar
@@ -1246,29 +1452,34 @@
       attributes:
       - sweetener
       - sweet
+      cost_per_kg: 2.2
     - name: Monk fruit
       status: safer
       attributes:
       - sweetener
       - sweet
+      cost_per_kg: 40.0
     - name: Stevia
       status: safer
       attributes:
       - sweetener
       - sweet
       - herbal
+      cost_per_kg: 35.0
     - name: Maple syrup
       status: safer
       attributes:
       - sweetener
       - sweet
       notes: Use sparingly
+      cost_per_kg: 18.0
     - name: Coconut sugar
       status: safer
       attributes:
       - sweetener
       - sweet
       notes: Use sparingly
+      cost_per_kg: 9.0
   - name: Nuts, Seeds & Chocolate
     items:
     - name: Chocolate
@@ -1279,76 +1490,91 @@
       - bitter
       - histamine-liberator
       notes: Cocoa is fermented and contains biogenic amines, theobromine, caffeine
+      cost_per_kg: 16.0
     - name: Almonds
       status: caution
       attributes:
       - nut
       - fat
       notes: Contains biogenic amines; blanched almonds are safer
+      cost_per_kg: 14.0
     - name: Baru nuts
       status: caution
       attributes:
       - nut
       - fat
+      cost_per_kg: 18.0
     - name: Brazil nuts
       status: caution
       attributes:
       - nut
       - fat
+      cost_per_kg: 22.0
     - name: Hazelnuts
       status: caution
       attributes:
       - nut
       - fat
+      cost_per_kg: 20.0
     - name: Macadamias
       status: caution
       attributes:
       - nut
       - fat
       - mild
+      cost_per_kg: 28.0
     - name: Pecans
       status: caution
       attributes:
       - nut
       - sweet
       - fat
+      cost_per_kg: 22.0
     - name: Pine nuts
       status: caution
       attributes:
       - seed
       - nut
+      cost_per_kg: 55.0
     - name: Pistachio
       status: caution
       attributes:
       - nut
       - savory
+      cost_per_kg: 24.0
     - name: Pumpkin seeds
       status: caution
       attributes:
       - seed
       - starches
+      cost_per_kg: 10.0
     - name: Sesame seeds
       status: caution
       attributes:
       - seed
       - savory
+      cost_per_kg: 8.5
     - name: Sunflower seeds
       status: caution
       attributes:
       - seed
       - mild
+      cost_per_kg: 6.5
     - name: Chia seeds
       status: caution
       attributes:
       - seed
+      cost_per_kg: 9.0
     - name: Flax seeds
       status: caution
       attributes:
       - seed
+      cost_per_kg: 5.0
     - name: Hemp protein / seeds
       status: caution
       attributes:
       - seed
+      cost_per_kg: 14.0
   - name: Condiments, Sauces & Vinegars
     items:
     - name: Vinegar
@@ -1358,6 +1584,7 @@
       - tart
       - high-histamine
       notes: Fermented product; red/white wine, cider, and balsamic vinegars are very high histamine
+      cost_per_kg: 3.0
     - name: Soy sauce
       status: avoid
       attributes:
@@ -1365,12 +1592,14 @@
       - savory
       - high-histamine
       notes: Fermented soy and wheat, extremely high in histamine and glutamate
+      cost_per_kg: 4.0
     - name: Store-bought broth and bouillon
       status: avoid
       attributes:
       - savory
       - high-histamine
       notes: Long-simmered bone/meat broths extract massive histamine; bouillon cubes contain yeast extract
+      cost_per_kg: 4.0
     - name: Ketchup
       status: avoid
       attributes:
@@ -1380,8 +1609,10 @@
       - tart
       - high-histamine
       notes: Combines high-histamine tomatoes and vinegar
+      cost_per_kg: 3.5
     - name: Processed condiments
       status: avoid
       attributes:
       - high-histamine
       notes: Commercial mayonnaise, mustard, relish, and sauces with vinegar/preservatives
+      cost_per_kg: 5.0

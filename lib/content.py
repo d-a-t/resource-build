@@ -1,12 +1,138 @@
 """Load non-recipe YAML content (food table, meal plan, checklists)."""
 from __future__ import annotations
 
+from dataclasses import dataclass, field
+import html
 from pathlib import Path
 from typing import Any
+import urllib.parse
 
 import yaml
 
 DATA = Path(__file__).resolve().parent.parent / "data"
+
+KG_TO_LBS = 2.20462262185
+LBS_TO_KG = 0.45359237
+
+# Accessible and harmonious color palettes for each Food Group
+FOOD_GROUP_COLORS: dict[str, dict[str, str]] = {
+    "Meat and fish": {
+        "bg": "#e0e7ff",      # Deep cool indigo (strong contrast with CAUTION yellow)
+        "border": "#a5b4fc",
+        "text": "#312e81",
+    },
+    "Eggs and dairy": {
+        "bg": "#fef9c3",      # Soft amber gold
+        "border": "#fef08a",
+        "text": "#854d0e",
+    },
+    "Vegetables": {
+        "bg": "#dcfce7",      # Garden green
+        "border": "#bbf7d0",
+        "text": "#166534",
+    },
+    "Fruit": {
+        "bg": "#f3e8ff",      # Berry violet
+        "border": "#e9d5ff",
+        "text": "#6b21a8",
+    },
+    "Grains and starches": {
+        "bg": "#ffedd5",      # Warm wheat peach
+        "border": "#fed7aa",
+        "text": "#9a3412",
+    },
+    "Drinks": {
+        "bg": "#cffafe",      # Crisp ice cyan / aqua
+        "border": "#67e8f9",
+        "text": "#155e75",
+    },
+    "Flavor and extras": {
+        "bg": "#ccfbf1",      # Sage teal
+        "border": "#99f6e4",
+        "text": "#115e59",
+    },
+}
+
+# Standardized color scheme for tolerance tags
+STATUS_COLORS: dict[str, dict[str, str]] = {
+    "safer": {
+        "bg": "#dcfce7",
+        "border": "#86efac",
+        "text": "#166534",
+        "label": "SAFER",
+        "emoji": "🟢",
+    },
+    "caution": {
+        "bg": "#fef3c7",
+        "border": "#fde047",
+        "text": "#854d0e",
+        "label": "CAUTION",
+        "emoji": "🟡",
+    },
+    "avoid": {
+        "bg": "#fee2e2",
+        "border": "#fca5a5",
+        "text": "#991b1b",
+        "label": "AVOID",
+        "emoji": "🔴",
+    },
+}
+
+
+def cost_per_kg_to_cost_per_lb(cost_per_kg: float | None, precision: int = 2) -> float | None:
+    """Convert cost per kilogram ($/kg) to cost per pound ($/lb).
+
+    Since 1 kg = 2.20462262185 lbs:
+        Cost per lb = (Cost per kg) / 2.20462262185
+    """
+    if cost_per_kg is None:
+        return None
+    cost = float(cost_per_kg) / KG_TO_LBS
+    return round(cost, precision)
+
+
+def convert_cost_kg_to_lbs(cost_per_kg: float | None, precision: int = 2) -> float | None:
+    """Alias for cost_per_kg_to_cost_per_lb."""
+    return cost_per_kg_to_cost_per_lb(cost_per_kg, precision)
+
+
+def cost_per_lb_to_cost_per_kg(cost_per_lb: float | None, precision: int = 2) -> float | None:
+    """Convert cost per pound ($/lb) to cost per kilogram ($/kg)."""
+    if cost_per_lb is None:
+        return None
+    cost = float(cost_per_lb) * KG_TO_LBS
+    return round(cost, precision)
+
+
+@dataclass
+class FoodItem:
+    """Structured representation of a food item with pricing and safety attributes."""
+
+    name: str
+    group: str
+    subgroup: str
+    status: str
+    attributes: list[str] = field(default_factory=list)
+    notes: str = ""
+    cost_per_kg: float | None = None
+
+    @property
+    def cost_per_lb(self) -> float | None:
+        """Helper property to convert cost per kg to cost per lb."""
+        return cost_per_kg_to_cost_per_lb(self.cost_per_kg)
+
+    def to_dict(self) -> dict:
+        return {
+            "name": self.name,
+            "group": self.group,
+            "subgroup": self.subgroup,
+            "status": self.status,
+            "attributes": self.attributes,
+            "notes": self.notes,
+            "cost_per_kg": self.cost_per_kg,
+            "cost_per_lb": self.cost_per_lb,
+        }
+
 
 ATTRIBUTE_TAXONOMY: dict[str, list[str]] = {
     "Starches & Veggie Types": [
@@ -76,20 +202,29 @@ ATTRIBUTE_TAXONOMY: dict[str, list[str]] = {
 
 def _load(name: str) -> Any:
     path = DATA / name
-    if not path.exists() and name == "food_reference.yaml":
-        alt = DATA / "food_recipe.yaml"
-        if alt.exists():
-            path = alt
     return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
 def load_food_reference() -> list[dict]:
-    """Load the raw food reference hierarchy from data/food_reference.yaml."""
+    """Load the canonical food reference hierarchy from data/food_reference.yaml."""
     return _load("food_reference.yaml")
 
 
+# Backward-compatible alias
+load_food_recipe = load_food_reference
+
+
+def _parse_cost(val: Any) -> float | None:
+    if val is None:
+        return None
+    try:
+        return round(float(val), 2)
+    except (ValueError, TypeError):
+        return None
+
+
 def get_all_food_items(data: list[dict] | None = None) -> list[dict]:
-    """Return a flat list of all food items with group, subgroup, status, attributes, and notes.
+    """Return a flat list of all food items with group, subgroup, status, attributes, notes, cost_per_kg, and cost_per_lb.
 
     Each item has:
         - name: str
@@ -98,6 +233,8 @@ def get_all_food_items(data: list[dict] | None = None) -> list[dict]:
         - status: 'safer' | 'caution' | 'avoid'
         - attributes: list[str]
         - notes: str
+        - cost_per_kg: float | None
+        - cost_per_lb: float | None
     """
     if data is None:
         data = load_food_reference()
@@ -108,6 +245,7 @@ def get_all_food_items(data: list[dict] | None = None) -> list[dict]:
         for sg in g.get("subgroups", []):
             subgroup_name = sg.get("name", "")
             for item in sg.get("items", []):
+                cost_kg = _parse_cost(item.get("cost_per_kg"))
                 items.append(
                     {
                         "name": item.get("name", ""),
@@ -116,11 +254,14 @@ def get_all_food_items(data: list[dict] | None = None) -> list[dict]:
                         "status": item.get("status", "safer").lower(),
                         "attributes": list(item.get("attributes", [])),
                         "notes": item.get("notes", ""),
+                        "cost_per_kg": cost_kg,
+                        "cost_per_lb": cost_per_kg_to_cost_per_lb(cost_kg),
                     }
                 )
             for status in ("safer", "caution", "avoid"):
                 for entry in sg.get(status, []):
                     if isinstance(entry, dict):
+                        cost_kg = _parse_cost(entry.get("cost_per_kg"))
                         items.append(
                             {
                                 "name": entry.get("name", ""),
@@ -129,6 +270,8 @@ def get_all_food_items(data: list[dict] | None = None) -> list[dict]:
                                 "status": status,
                                 "attributes": list(entry.get("attributes", [])),
                                 "notes": entry.get("notes", ""),
+                                "cost_per_kg": cost_kg,
+                                "cost_per_lb": cost_per_kg_to_cost_per_lb(cost_kg),
                             }
                         )
                     elif isinstance(entry, str):
@@ -140,6 +283,8 @@ def get_all_food_items(data: list[dict] | None = None) -> list[dict]:
                                 "status": status,
                                 "attributes": [],
                                 "notes": "",
+                                "cost_per_kg": None,
+                                "cost_per_lb": None,
                             }
                         )
     return items
@@ -193,15 +338,112 @@ def get_all_attributes(data: list[dict] | None = None) -> list[str]:
     return sorted(attrs)
 
 
-def format_food_item(it: dict, include_attributes: bool = False) -> str:
-    """Format an ingredient into a string with optional attributes and notes."""
+def format_food_item(it: dict, include_attributes: bool = False, include_cost: bool = False) -> str:
+    """Format an ingredient into a string with optional attributes, cost, and notes."""
     name = it["name"]
     parts: list[str] = [name]
+    if include_cost and it.get("cost_per_kg") is not None:
+        cost_lb = it.get("cost_per_lb")
+        parts.append(f"(${it['cost_per_kg']:.2f}/kg, ${cost_lb:.2f}/lb)" if cost_lb else f"(${it['cost_per_kg']:.2f}/kg)")
     if include_attributes and it.get("attributes"):
         parts.append(f"[{', '.join(it['attributes'])}]")
     if it.get("notes"):
         parts.append(f"({it['notes']})")
     return " ".join(parts)
+
+
+def render_food_box(it: dict) -> str:
+    """Render a single food as an individually boxed, clickable badge colored by food group."""
+    group = it.get("group", "")
+    colors = FOOD_GROUP_COLORS.get(
+        group, {"bg": "#f1f5f9", "border": "#cbd5e1", "text": "#334155"}
+    )
+    name = it["name"]
+    notes = it.get("notes", "")
+    safe_name = html.escape(name)
+    encoded_name = urllib.parse.quote(name)
+    notes_html = (
+        f' <span style="font-size: 0.8em; opacity: 0.85; font-weight: normal;">({html.escape(notes)})</span>'
+        if notes
+        else ""
+    )
+
+    return (
+        f'<a href="?food={encoded_name}&tab=dir" target="_self" '
+        f'title="Click to view {safe_name} in Ingredient Directory" '
+        f'style="display: inline-block; padding: 4px 10px; margin: 3px 4px 3px 0; '
+        f'background-color: {colors["bg"]}; border: 1px solid {colors["border"]}; '
+        f'color: {colors["text"]}; border-radius: 6px; font-size: 0.88rem; font-weight: 500; '
+        f'text-decoration: none; box-shadow: 0 1px 2px rgba(0,0,0,0.04); '
+        f'line-height: 1.35; transition: transform 0.1s ease, box-shadow 0.1s ease;">'
+        f'{safe_name}{notes_html}</a>'
+    )
+
+
+def get_food_reference_html_table(items: list[dict] | None = None) -> str:
+    """Generate an accessible HTML reference table where foods are individually boxed and colored by food group.
+
+    Headers feature colored SAFER, CAUTION, and AVOID badges. Clicking any food box redirects to the ingredient category.
+    """
+    if items is None:
+        items = get_all_food_items()
+
+    grouped: dict[tuple[str, str], dict[str, list[dict]]] = {}
+    for it in items:
+        key = (it["group"], it["subgroup"])
+        if key not in grouped:
+            grouped[key] = {"safer": [], "caution": [], "avoid": []}
+        st = it["status"] if it["status"] in ("safer", "caution", "avoid") else "safer"
+        grouped[key][st].append(it)
+
+    header_html = (
+        '<div style="overflow-x: auto; width: 100%; border-radius: 8px; border: 1px solid #e2e8f0; margin: 12px 0 20px 0;">'
+        '<table style="width: 100%; border-collapse: collapse; font-family: inherit; font-size: 0.92rem; background: #ffffff;">'
+        '<thead>'
+        '<tr style="background: #f8fafc; border-bottom: 2px solid #cbd5e1; text-align: left;">'
+        '<th style="padding: 12px 14px; font-weight: 600; width: 14%; color: #334155;">Food group</th>'
+        '<th style="padding: 12px 14px; font-weight: 600; width: 18%; color: #334155;">Subgroup</th>'
+        '<th style="padding: 12px 14px; font-weight: 600; width: 28%; color: #334155;">'
+        '<span style="background-color: #dcfce7; border: 1px solid #86efac; color: #166534; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.04em;">SAFER</span> '
+        '<span style="font-weight: 500; font-size: 0.82rem; color: #64748b;">(usually well tolerated)</span></th>'
+        '<th style="padding: 12px 14px; font-weight: 600; width: 20%; color: #334155;">'
+        '<span style="background-color: #fef3c7; border: 1px solid #fde047; color: #854d0e; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.04em;">CAUTION</span> '
+        '<span style="font-weight: 500; font-size: 0.82rem; color: #64748b;">(test slowly)</span></th>'
+        '<th style="padding: 12px 14px; font-weight: 600; width: 20%; color: #334155;">'
+        '<span style="background-color: #fee2e2; border: 1px solid #fca5a5; color: #991b1b; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.04em;">AVOID</span> '
+        '<span style="font-weight: 500; font-size: 0.82rem; color: #64748b;">(problematic)</span></th>'
+        '</tr>'
+        '</thead>'
+        '<tbody>'
+    )
+
+    rows_html = []
+    for idx, ((grp, subg), buckets) in enumerate(grouped.items()):
+        grp_colors = FOOD_GROUP_COLORS.get(grp, {"bg": "#f1f5f9", "border": "#cbd5e1", "text": "#334155"})
+        row_bg = "#ffffff" if idx % 2 == 0 else "#fafbfc"
+
+        safer_content = " ".join(render_food_box(it) for it in buckets["safer"]) if buckets["safer"] else '<span style="color: #94a3b8; font-weight: 300;">—</span>'
+        caution_content = " ".join(render_food_box(it) for it in buckets["caution"]) if buckets["caution"] else '<span style="color: #94a3b8; font-weight: 300;">—</span>'
+        avoid_content = " ".join(render_food_box(it) for it in buckets["avoid"]) if buckets["avoid"] else '<span style="color: #94a3b8; font-weight: 300;">—</span>'
+
+        grp_badge = (
+            f'<span style="background-color: {grp_colors["bg"]}; border: 1px solid {grp_colors["border"]}; '
+            f'color: {grp_colors["text"]}; padding: 3px 8px; border-radius: 4px; font-weight: 600; font-size: 0.82rem; display: inline-block;">'
+            f'{html.escape(grp)}</span>'
+        )
+
+        rows_html.append(
+            f'<tr style="background: {row_bg}; border-bottom: 1px solid #edf2f7; vertical-align: top;">'
+            f'<td style="padding: 12px 14px; font-weight: 500;">{grp_badge}</td>'
+            f'<td style="padding: 12px 14px; font-weight: 600; color: #1e293b;">{html.escape(subg)}</td>'
+            f'<td style="padding: 10px 14px; line-height: 1.6;">{safer_content}</td>'
+            f'<td style="padding: 10px 14px; line-height: 1.6;">{caution_content}</td>'
+            f'<td style="padding: 10px 14px; line-height: 1.6;">{avoid_content}</td>'
+            f'</tr>'
+        )
+
+    footer_html = '</tbody></table></div>'
+    return header_html + "".join(rows_html) + footer_html
 
 
 def filter_food_items(
@@ -232,9 +474,10 @@ def filter_food_items(
             if not attr_set.issubset(it_attrs):
                 continue
         if q:
+            cost_str = f"{it.get('cost_per_kg', '')} {it.get('cost_per_lb', '')}"
             searchable = (
                 f"{it['name']} {it['group']} {it['subgroup']} "
-                f"{' '.join(it.get('attributes', []))} {it.get('notes', '')}"
+                f"{' '.join(it.get('attributes', []))} {it.get('notes', '')} {cost_str}"
             ).lower()
             if q not in searchable:
                 continue
@@ -245,6 +488,7 @@ def filter_food_items(
 def get_food_reference_table_rows(
     items: list[dict] | None = None,
     include_attributes: bool = False,
+    include_cost: bool = False,
 ) -> list[dict]:
     """Return grouped table rows formatted for Streamlit table/dataframe display."""
     if items is None:
@@ -256,7 +500,9 @@ def get_food_reference_table_rows(
         if key not in grouped:
             grouped[key] = {"safer": [], "caution": [], "avoid": []}
         status = it["status"] if it["status"] in ("safer", "caution", "avoid") else "safer"
-        grouped[key][status].append(format_food_item(it, include_attributes=include_attributes))
+        grouped[key][status].append(
+            format_food_item(it, include_attributes=include_attributes, include_cost=include_cost)
+        )
 
     rows: list[dict] = []
     for (grp, subg), buckets in grouped.items():
