@@ -16,12 +16,13 @@ from lib.content import (
     get_food_reference_html_table,
     get_food_subgroups,
 )
-from ui.common import disclaimer
+from ui.common import disclaimer, render_gt_header
 
 
 def page_food() -> None:
     """Render the interactive Food Reference table and ingredient directory."""
-    st.title("Food reference")
+    render_gt_header("food")
+    st.title("Food Compatibility & Ingredient Reference")
     st.write(
         "Each column has a text label and distinct color badge. "
         "Lists vary by source and by person. This is a starting point "

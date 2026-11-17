@@ -4,20 +4,22 @@ from __future__ import annotations
 import streamlit as st
 
 from lib.recipes import Recipe, calculate_recipe_cost
-from ui.common import md, recipes_cached, render_recipe
+from ui.common import md, recipes_cached, render_gt_header, render_recipe
 from ui.replacer import page_experimental_replacer
 
 
 def page_cheap() -> None:
-    """Render the Cheap Cooking in a small kitchen page."""
-    st.title("Cheap cooking in a small kitchen")
+    """Render the Cheap Cooking in a student kitchen page."""
+    render_gt_header("cheap-cooking")
+    st.title("Student Budget Cooking & Dorm Kitchen Strategies")
     md("cheap_cooking.md")
 
 
 def page_recipes() -> None:
     """Render the main Recipes page with catalog browsing and the Experimental Replacer."""
-    st.title("Recipes")
-    tab_browse, tab_replacer = st.tabs(["Browse Recipes", "Experimental Replacer"])
+    render_gt_header("recipes")
+    st.title("Low-Histamine Recipe Collection")
+    tab_browse, tab_replacer = st.tabs(["🥣 Browse Recipes (Basic & Advanced)", "🧪 Experimental Replacer"])
 
     with tab_browse:
         recipes, problems = recipes_cached()

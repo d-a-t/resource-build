@@ -55,28 +55,31 @@ FOOD_GROUP_COLORS: dict[str, dict[str, str]] = {
     },
 }
 
-# Standardized color scheme for tolerance tags
+# Standardized accessible color scheme for tolerance tags (WCAG AAA Conformance)
 STATUS_COLORS: dict[str, dict[str, str]] = {
     "safer": {
         "bg": "#dcfce7",
-        "border": "#86efac",
-        "text": "#166534",
+        "border": "#16a34a",
+        "text": "#14532d",
         "label": "SAFER",
         "emoji": "🟢",
+        "aria_label": "Tolerance status: SAFER. Fresh, low-histamine foods usually well tolerated.",
     },
     "caution": {
         "bg": "#fef3c7",
-        "border": "#fde047",
-        "text": "#854d0e",
+        "border": "#d97706",
+        "text": "#78350f",
         "label": "CAUTION",
         "emoji": "🟡",
+        "aria_label": "Tolerance status: CAUTION. Moderate histamine or histamine liberators; test slowly.",
     },
     "avoid": {
         "bg": "#fee2e2",
-        "border": "#fca5a5",
-        "text": "#991b1b",
+        "border": "#dc2626",
+        "text": "#7f1d1d",
         "label": "AVOID",
         "emoji": "🔴",
+        "aria_label": "Tolerance status: AVOID. High histamine, aged, fermented, or cured foods.",
     },
 }
 
@@ -359,26 +362,27 @@ def render_food_box(it: dict) -> str:
     """Render a single food as an individually boxed, clickable badge colored by food group."""
     group = it.get("group", "")
     colors = FOOD_GROUP_COLORS.get(
-        group, {"bg": "#f1f5f9", "border": "#cbd5e1", "text": "#334155"}
+        group, {"bg": "#f1f5f9", "border": "#cbd5e1", "text": "#1e293b"}
     )
     name = it["name"]
     notes = it.get("notes", "")
     safe_name = html.escape(name)
     encoded_name = urllib.parse.quote(name)
     notes_html = (
-        f' <span style="font-size: 0.8em; opacity: 0.85; font-weight: normal;">({html.escape(notes)})</span>'
+        f' <span style="font-size: 0.8em; opacity: 0.9; font-weight: normal;">({html.escape(notes)})</span>'
         if notes
         else ""
     )
 
     return (
         f'<a href="?food={encoded_name}&tab=dir" target="_self" '
+        f'aria-label="View {safe_name} details and attributes in Ingredient Directory" '
         f'title="Click to view {safe_name} in Ingredient Directory" '
         f'style="display: inline-block; padding: 4px 10px; margin: 3px 4px 3px 0; '
         f'background-color: {colors["bg"]}; border: 1px solid {colors["border"]}; '
-        f'color: {colors["text"]}; border-radius: 6px; font-size: 0.88rem; font-weight: 500; '
-        f'text-decoration: none; box-shadow: 0 1px 2px rgba(0,0,0,0.04); '
-        f'line-height: 1.35; transition: transform 0.1s ease, box-shadow 0.1s ease;">'
+        f'color: {colors["text"]}; border-radius: 6px; font-size: 0.88rem; font-weight: 600; '
+        f'text-decoration: underline; text-decoration-color: {colors["border"]}; box-shadow: 0 1px 2px rgba(0,0,0,0.04); '
+        f'line-height: 1.35;">'
         f'{safe_name}{notes_html}</a>'
     )
 
@@ -400,21 +404,25 @@ def get_food_reference_html_table(items: list[dict] | None = None) -> str:
         grouped[key][st].append(it)
 
     header_html = (
-        '<div style="overflow-x: auto; width: 100%; border-radius: 8px; border: 1px solid #e2e8f0; margin: 12px 0 20px 0;">'
-        '<table style="width: 100%; border-collapse: collapse; font-family: inherit; font-size: 0.92rem; background: #ffffff;">'
+        '<div style="overflow-x: auto; width: 100%; border-radius: 8px; border: 1px solid #cbd5e1; margin: 12px 0 20px 0;">'
+        '<table role="table" aria-label="Georgia Tech Food Compatibility Reference Table" '
+        'style="width: 100%; border-collapse: collapse; font-family: inherit; font-size: 0.92rem; background: #ffffff;">'
         '<thead>'
         '<tr style="background: #f8fafc; border-bottom: 2px solid #cbd5e1; text-align: left;">'
-        '<th style="padding: 12px 14px; font-weight: 600; width: 14%; color: #334155;">Food group</th>'
-        '<th style="padding: 12px 14px; font-weight: 600; width: 18%; color: #334155;">Subgroup</th>'
-        '<th style="padding: 12px 14px; font-weight: 600; width: 28%; color: #334155;">'
-        '<span style="background-color: #dcfce7; border: 1px solid #86efac; color: #166534; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.04em;">SAFER</span> '
-        '<span style="font-weight: 500; font-size: 0.82rem; color: #64748b;">(usually well tolerated)</span></th>'
-        '<th style="padding: 12px 14px; font-weight: 600; width: 20%; color: #334155;">'
-        '<span style="background-color: #fef3c7; border: 1px solid #fde047; color: #854d0e; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.04em;">CAUTION</span> '
-        '<span style="font-weight: 500; font-size: 0.82rem; color: #64748b;">(test slowly)</span></th>'
-        '<th style="padding: 12px 14px; font-weight: 600; width: 20%; color: #334155;">'
-        '<span style="background-color: #fee2e2; border: 1px solid #fca5a5; color: #991b1b; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.04em;">AVOID</span> '
-        '<span style="font-weight: 500; font-size: 0.82rem; color: #64748b;">(problematic)</span></th>'
+        '<th scope="col" style="padding: 12px 14px; font-weight: 700; width: 14%; color: #0f172a;">Food group</th>'
+        '<th scope="col" style="padding: 12px 14px; font-weight: 700; width: 18%; color: #0f172a;">Subgroup</th>'
+        '<th scope="col" style="padding: 12px 14px; font-weight: 700; width: 28%; color: #0f172a;">'
+        '<span role="status" aria-label="Tolerance level: SAFER" '
+        'style="background-color: #dcfce7; border: 1px solid #16a34a; color: #14532d; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.04em;">🟢 SAFER</span> '
+        '<span style="font-weight: 500; font-size: 0.82rem; color: #475569;">(usually well tolerated)</span></th>'
+        '<th scope="col" style="padding: 12px 14px; font-weight: 700; width: 20%; color: #0f172a;">'
+        '<span role="status" aria-label="Tolerance level: CAUTION" '
+        'style="background-color: #fef3c7; border: 1px solid #d97706; color: #78350f; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.04em;">🟡 CAUTION</span> '
+        '<span style="font-weight: 500; font-size: 0.82rem; color: #475569;">(test slowly)</span></th>'
+        '<th scope="col" style="padding: 12px 14px; font-weight: 700; width: 20%; color: #0f172a;">'
+        '<span role="status" aria-label="Tolerance level: AVOID" '
+        'style="background-color: #fee2e2; border: 1px solid #dc2626; color: #7f1d1d; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.04em;">🔴 AVOID</span> '
+        '<span style="font-weight: 500; font-size: 0.82rem; color: #475569;">(problematic)</span></th>'
         '</tr>'
         '</thead>'
         '<tbody>'

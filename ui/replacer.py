@@ -37,7 +37,7 @@ def page_experimental_replacer() -> None:
         "This tool is intended primarily for **experienced cooks** who know how to adjust recipes and cooking times accordingly when swapping ingredients. "
         "Experiment with ingredient replacements to tailor recipes to your personal histamine tolerance, pantry staples, or budget. "
         "Swap ingredients either **using functional attributes** (e.g., matching starches, root vegetables, poultry, or aromatics) "
-        "or **by choosing a specific ingredient** directly. The replacer calculates the updated cost per serving and generates a fully compliant recipe YAML."
+        "or **by choosing a specific ingredient** directly. The replacer calculates the updated cost per serving and generates a schema-valid recipe YAML."
     )
 
     EXAMPLE_PRESETS = {
@@ -353,23 +353,23 @@ def page_experimental_replacer() -> None:
     cost_diff = round(new_cps - orig_cps, 2)
 
     if cost_diff > 0.02:
-        diff_badge = f'<span style="background-color: #fee2e2; color: #991b1b; padding: 2px 7px; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">+${cost_diff:.2f}/serving</span>'
+        diff_badge = f'<span role="status" style="background-color: #fee2e2; border: 1px solid #dc2626; color: #7f1d1d; padding: 2px 7px; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">+${cost_diff:.2f}/serving</span>'
     elif cost_diff < -0.02:
-        diff_badge = f'<span style="background-color: #dcfce7; color: #166534; padding: 2px 7px; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">-${abs(cost_diff):.2f}/serving (Cheaper!)</span>'
+        diff_badge = f'<span role="status" style="background-color: #dcfce7; border: 1px solid #16a34a; color: #14532d; padding: 2px 7px; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">-${abs(cost_diff):.2f}/serving (Cheaper!)</span>'
     else:
-        diff_badge = '<span style="background-color: #f1f5f9; color: #475569; padding: 2px 7px; border-radius: 4px; font-weight: 600; font-size: 0.8rem;">Same cost</span>'
+        diff_badge = '<span role="status" style="background-color: #f8fafc; border: 1px solid #94a3b8; color: #1e293b; padding: 2px 7px; border-radius: 4px; font-weight: 600; font-size: 0.8rem;">Same cost</span>'
 
-    rep_st_c = STATUS_COLORS.get(replacement_food["status"], {"bg": "#dcfce7", "text": "#166534", "label": replacement_food["status"].upper()})
+    rep_st_c = STATUS_COLORS.get(replacement_food["status"], {"bg": "#dcfce7", "border": "#16a34a", "text": "#14532d", "label": replacement_food["status"].upper()})
     rep_cost_str = f"${replacement_food.get('cost_per_lb', 0):.2f}/lb • ${replacement_food.get('cost_per_kg', 0):.2f}/kg"
 
     st.markdown(
         f'<div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px 16px; margin: 12px 0 16px 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">'
-        f'<div><b>Swap:</b> <code style="color: #64748b;">{html.escape(selected_ing)}</code> &nbsp;➔&nbsp; '
+        f'<div><b>Swap:</b> <code style="color: #475569;">{html.escape(selected_ing)}</code> &nbsp;➔&nbsp; '
         f'<b style="color: #0f172a;">{html.escape(replacement_food["name"])}</b> '
-        f'<span style="background-color: {rep_st_c["bg"]}; color: {rep_st_c["text"]}; padding: 1px 6px; border-radius: 4px; font-size: 0.74rem; font-weight: 700;">{rep_st_c["label"]}</span> '
-        f'<span style="color: #64748b; font-size: 0.84rem;">({rep_cost_str})</span></div>'
+        f'<span role="status" style="background-color: {rep_st_c["bg"]}; border: 1px solid {rep_st_c.get("border", "#16a34a")}; color: {rep_st_c["text"]}; padding: 1px 6px; border-radius: 4px; font-size: 0.74rem; font-weight: 700;">{rep_st_c["label"]}</span> '
+        f'<span style="color: #475569; font-size: 0.84rem;">({rep_cost_str})</span></div>'
         f'<div><b>Calculated cost per serving:</b> <b>${new_cps:.2f}</b> {diff_badge} '
-        f'<span style="color: #64748b; font-size: 0.82rem;">(orig: ${orig_cps:.2f})</span></div>'
+        f'<span style="color: #475569; font-size: 0.82rem;">(orig: ${orig_cps:.2f})</span></div>'
         f'</div>',
         unsafe_allow_html=True,
     )

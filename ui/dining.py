@@ -1,11 +1,12 @@
 """Campus Dining page module with live Tech Dining Nutrislice menu integration."""
 from __future__ import annotations
 
+import datetime
 import html
 import streamlit as st
 
 from lib.dining import AVAILABLE_DINING_HALLS, fetch_nutrislice_menu, parse_nutrislice_url
-from ui.common import disclaimer, md
+from ui.common import disclaimer, md, render_gt_header
 
 
 @st.cache_data(ttl=600)
@@ -16,9 +17,10 @@ def cached_nutrislice_menu(school: str, menu_type: str, date_str: str, district:
 
 def page_dining() -> None:
     """Render the Campus Dining page with live Nutrislice menu risk analysis."""
-    st.title("Campus Dining & Live Daily Menu")
+    render_gt_header("dining")
+    st.title("Campus Dining & Live Daily Menus")
 
-    tab_menu, tab_guide = st.tabs(["🍽️ Daily Nutrislice Menu Checker", "📋 Dining Hall Guide & Tips"])
+    tab_menu, tab_guide = st.tabs(["🍽️ Daily Nutrislice Menu Checker", "📋 GT Dining Hall Guide & Tips"])
 
     with tab_guide:
         md("dining.md")
@@ -70,22 +72,45 @@ def page_dining() -> None:
         parsed = parse_nutrislice_url(url_input)
         school = parsed["school"] if parsed["school"] in AVAILABLE_DINING_HALLS else chosen_school_key
 
-        c1, c2, c3 = st.columns([1, 1, 0.8])
+        c1, c2, c3 = st.columns([1, 1.2, 0.8])
         meal_options = ["lunch", "dinner", "breakfast"]
         meal_idx = meal_options.index(parsed["menu_type"]) if parsed["menu_type"] in meal_options else 0
         chosen_meal = c1.selectbox("Meal Period", meal_options, index=meal_idx, key="dining_meal_select")
 
-        chosen_date = c2.text_input("Date (YYYY-MM-DD)", value=parsed["date"], key="dining_date_input")
+        # Parse date from URL or default to 2026-11-17
+        try:
+            default_date_val = datetime.date.fromisoformat(parsed["date"])
+        except (ValueError, TypeError):
+            default_date_val = datetime.date(2026, 11, 17)
+
+        # Sync date picker if URL input changed the date
+        if st.session_state.get("_last_parsed_url_date") != parsed["date"]:
+            st.session_state["_last_parsed_url_date"] = parsed["date"]
+            st.session_state["dining_date_picker"] = default_date_val
+
+        chosen_date_obj = c2.date_input(
+            "Date (Calendar Dropdown)",
+            value=default_date_val,
+            key="dining_date_picker",
+            help="Click to open the interactive calendar drop down and select a menu date.",
+        )
+
+        if isinstance(chosen_date_obj, (datetime.date, datetime.datetime)):
+            chosen_date_str = chosen_date_obj.strftime("%Y-%m-%d")
+        elif isinstance(chosen_date_obj, (list, tuple)) and chosen_date_obj:
+            chosen_date_str = chosen_date_obj[0].strftime("%Y-%m-%d")
+        else:
+            chosen_date_str = str(chosen_date_obj)
 
         with c3:
             st.write("&nbsp;")
             st.button("🔄 Analyze Menu", use_container_width=True, key="dining_load_btn")
 
         hall_info = AVAILABLE_DINING_HALLS.get(school, AVAILABLE_DINING_HALLS[default_hall_key])
-        canonical_url = f"{hall_info['url']}/{chosen_meal}/{chosen_date.strip()}"
+        canonical_url = f"{hall_info['url']}/{chosen_meal}/{chosen_date_str}"
         st.caption(f"Currently viewing: **{hall_info['name']}** • [{canonical_url}]({canonical_url})")
 
-        dishes, err = cached_nutrislice_menu(school, chosen_meal, chosen_date.strip(), parsed["district"])
+        dishes, err = cached_nutrislice_menu(school, chosen_meal, chosen_date_str, parsed["district"])
 
         if err:
             st.error(f"Could not load Nutrislice menu: {err}")
@@ -150,7 +175,7 @@ def page_dining() -> None:
                     continue
             filtered.append(d)
 
-        st.caption(f"Showing **{len(filtered)}** of **{len(dishes)}** dishes for **{hall_info['name']}** ({chosen_meal.title()}, {chosen_date}).")
+        st.caption(f"Showing **{len(filtered)}** of **{len(dishes)}** dishes for **{hall_info['name']}** ({chosen_meal.title()}, {chosen_date_str}).")
 
         # Group filtered dishes by station
         by_station = {}
@@ -161,33 +186,36 @@ def page_dining() -> None:
             with st.expander(f"📍 **{station_name}** ({len(s_dishes)} dishes)", expanded=True):
                 for dish in s_dishes:
                     risk_badge = (
-                        '<span style="background-color: #dcfce7; border: 1px solid #86efac; color: #166534; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.78rem;">🟢 SAFER</span>'
+                        '<span role="status" aria-label="Histamine risk: SAFER. Fresh preparation without high histamine triggers." '
+                        'style="background-color: #dcfce7; border: 1px solid #16a34a; color: #14532d; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.78rem;">🟢 SAFER</span>'
                         if dish["risk"] == "safer"
                         else (
-                            '<span style="background-color: #fef9c3; border: 1px solid #fde047; color: #854d0e; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.78rem;">🟡 CAUTION</span>'
+                            '<span role="status" aria-label="Histamine risk: CAUTION. Contains moderate histamine triggers or liberators." '
+                            'style="background-color: #fef3c7; border: 1px solid #d97706; color: #78350f; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.78rem;">🟡 CAUTION</span>'
                             if dish["risk"] == "caution"
-                            else '<span style="background-color: #fee2e2; border: 1px solid #fca5a5; color: #991b1b; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.78rem;">🔴 AVOID</span>'
+                            else '<span role="status" aria-label="Histamine risk: AVOID. High histamine, aged, cured, or fermented ingredients." '
+                            'style="background-color: #fee2e2; border: 1px solid #dc2626; color: #7f1d1d; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.78rem;">🔴 AVOID</span>'
                         )
                     )
-                    cal_str = f"&nbsp;•&nbsp; <span style='color: #64748b; font-size: 0.85rem;'>{int(dish['calories'])} kcal</span>" if dish["calories"] is not None else ""
+                    cal_str = f"&nbsp;•&nbsp; <span style='color: #475569; font-size: 0.85rem;'>{int(dish['calories'])} kcal</span>" if dish["calories"] is not None else ""
 
                     reasons_html = ""
                     if dish["risk"] != "safer" and dish["reasons"]:
                         reasons_html = (
-                            f"<div style='font-size: 0.84rem; color: #475569; margin-top: 3px;'>"
+                            f"<div style='font-size: 0.84rem; color: #334155; margin-top: 4px;'>"
                             f"<b>Histamine Triggers:</b> {', '.join(dish['reasons'])}"
                             f"</div>"
                         )
                     elif dish["risk"] == "safer":
                         reasons_html = (
-                            "<div style='font-size: 0.84rem; color: #166534; margin-top: 3px;'>"
+                            "<div style='font-size: 0.84rem; color: #14532d; margin-top: 4px; font-weight: 500;'>"
                             "Fresh / simple preparation; no common histamine triggers detected."
                             "</div>"
                         )
 
                     st.markdown(
-                        f"<div style='background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 14px; margin-bottom: 8px;'>"
-                        f"<div>{risk_badge} &nbsp; <b>{html.escape(dish['name'])}</b>{cal_str}</div>"
+                        f"<div style='background-color: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px 14px; margin-bottom: 8px;'>"
+                        f"<div>{risk_badge} &nbsp; <b style='color: #0f172a;'>{html.escape(dish['name'])}</b>{cal_str}</div>"
                         f"{reasons_html}"
                         f"</div>",
                         unsafe_allow_html=True,

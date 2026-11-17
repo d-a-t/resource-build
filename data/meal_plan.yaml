@@ -1,19 +1,19 @@
 # Each meal is either {recipe: <recipe id>} or {text: "free text"}.
-- day: Day 1
+- day: Day 1 (East Campus / Brittain)
   meals:
     Breakfast: {recipe: microwave-apple-cinnamon-oatmeal}
-    Lunch: {text: "Dining hall: plain grilled chicken, rice, steamed vegetables (verify availability)"}
+    Lunch: {text: "Brittain Grill Station: made-to-order plain chicken breast, steamed white rice, sliced cucumber with olive oil & salt"}
     Dinner: {recipe: rice-cooker-chicken-carrot-rice}
-    Snack: {text: "Fresh apple or pear"}
-- day: Day 2
+    Snack: {text: "Fresh Gala apple or pear"}
+- day: Day 2 (Dorm Meal Prep & North Ave)
   meals:
-    Breakfast: {text: "Plain eggs (if tolerated) and a baked potato"}
+    Breakfast: {text: "Microwave baked potato with butter & salt, plus 2 plain hard-boiled eggs"}
     Lunch: {recipe: one-pot-chicken-potato-soup}
     Dinner: {recipe: skillet-beef-potato-hash}
-    Snack: {text: "Blueberries"}
-- day: Day 3
+    Snack: {text: "Fresh blueberries"}
+- day: Day 3 (West Campus / West Village)
   meals:
     Breakfast: {recipe: microwave-apple-cinnamon-oatmeal}
-    Lunch: {recipe: turkey-zucchini-patties}
+    Lunch: {text: "West Village Custom Bowl: made-to-order plain grilled chicken or beef, steamed rice, steamed broccoli, olive oil (no soy/teriyaki)"}
     Dinner: {recipe: microwave-sweet-potato-turkey}
-    Snack: {text: "Rice cakes with butter"}
+    Snack: {text: "Crisp rice cakes with butter or fresh blueberries"}

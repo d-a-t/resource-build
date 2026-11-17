@@ -1,12 +1,16 @@
-Histamine is a natural chemical found in many foods. It also forms as food ages, ferments, or sits in the fridge. People with histamine intolerance are thought to have trouble breaking down dietary histamine efficiently, so it can build up and trigger symptoms such as headaches, flushing, hives, stomach pain, congestion, or a racing heart. *[VERIFY against Maintz & Novak 2007; Comas-Basté et al. 2020]*
+Histamine is a biogenic amine found naturally in many foods and synthesized rapidly by bacteria as food ages, ferments, or sits in holding warmers. Individuals with histamine intolerance experience an impaired ability to metabolize ingested histamine—primarily due to reduced diamine oxidase (DAO) enzyme activity in the intestinal mucosa—causing systemic symptoms including vascular headaches, flushing, urticaria, gastrointestinal distress, tachycardia, and respiratory congestion (Maintz & Novak, 2007; Comas-Basté et al., 2020).
 
-The most common management approach is a low-histamine diet. (You may hear this called an "anti-histamine diet." Anti-histamines are medications, so this toolkit says "low-histamine diet.")
+The recognized clinical management strategy is a targeted low-histamine diet. Because anti-histamines are pharmacological medications rather than a nutritional protocol, this resource refers specifically to a low-histamine dietary framework.
 
-Histamine intolerance is not a classic food allergy, and it is not a formally recognized disability category. This toolkit does not claim that it is. It describes a chronic condition that creates real access barriers. Under the social model of disability, the barrier is not only the body but the design of the environment. *[VERIFY course reading]* On a campus, that environment includes:
+### The Social Model of Disability in Georgia Tech Campus Life
 
-- Dining halls that label major allergens but not histamine, ingredient age, or how long food has been held.
-- Leftovers, reheated dishes, and steam-table food, which are common and often higher in histamine.
-- Dorm and apartment kitchens with little storage or equipment, which make fresh cooking and freezing portions harder.
-- An invisible, poorly understood condition that students must explain again and again. This repeated explaining is a form of self-advocacy labor.
+While histamine intolerance is not classified as an IgE-mediated food allergy, it constitutes a chronic, fluctuating functional impairment. Under the **social model of disability** (Oliver, 1990; Shakespeare, 2006), disability is produced not merely by physiological pathology, but by the structural design of physical, institutional, and social environments that fail to accommodate diverse bodily needs.
 
-The goal here is practical: help you eat safely, cheaply, and with less explaining.
+On the Georgia Tech campus, these environmental access barriers manifest daily:
+
+1. **Dining Hall Systems:** Campus dining halls (such as Brittain, North Ave, and West Village) are engineered for high-volume service. Standard dietary signage identifies top FDA allergens (peanuts, shellfish, dairy, gluten), but does not account for ingredient aging, holding time under steam heat lamps, or histamine liberators.
+2. **Buffet & Steam-Table Holding:** Leftover rotation and food held at warm temperatures ($135^\circ\text{F}$–$165^\circ\text{F}$) promote bacterial histamine accumulation, making seemingly benign foods risky for intolerant students.
+3. **Residence Hall Constraints:** Traditional dorm rooms and shared apartments offer limited appliance access (mini-fridges with minimal freezer capacity), impeding the single-portion batch-cooking and immediate freezing essential to low-histamine food safety.
+4. **Self-Advocacy & Explaining Fatigue:** Histamine intolerance remains largely invisible and poorly understood by peers and service workers. Students carry a continuous communicative burden—having to explain, negotiate, and justify their dietary requirements at every campus meal.
+
+The primary objective of this toolkit is universal access: empowering Georgia Tech students to navigate campus dining safely, manage budget-friendly dorm meal prep, and minimize self-advocacy friction through institutional awareness and clear communication tools.

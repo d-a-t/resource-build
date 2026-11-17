@@ -4,7 +4,7 @@ from __future__ import annotations
 import streamlit as st
 
 from lib.recipes import RECIPE_DIR, parse_yaml_text, to_yaml
-from ui.common import recipes_cached, render_recipe
+from ui.common import recipes_cached, render_gt_header, render_recipe
 
 
 def _validate_and_offer(text: str, key: str = "gen") -> None:
@@ -38,7 +38,8 @@ def _validate_and_offer(text: str, key: str = "gen") -> None:
 
 def page_add() -> None:
     """Render the Add a Recipe form and YAML upload page."""
-    st.title("Add a recipe")
+    render_gt_header("add-recipe")
+    st.title("Contribute a Low-Histamine Recipe")
     st.write(
         "Recipes are YAML files in the `recipes/` folder. You can write one by hand "
         "(copy `recipes/_template.yaml`), paste or upload one below to check it, or "

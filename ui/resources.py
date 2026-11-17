@@ -3,11 +3,12 @@ from __future__ import annotations
 
 import streamlit as st
 
-from ui.common import disclaimer, md
+from ui.common import disclaimer, md, render_gt_header
 
 
 def page_resources() -> None:
-    """Render the Resources and sources page."""
-    st.title("Resources and sources")
+    """Render the Georgia Tech Campus Resources and scholarly citations page."""
+    render_gt_header("resources")
+    st.title("Campus Resources & Scholarly Literature")
     md("resources.md")
     disclaimer()
