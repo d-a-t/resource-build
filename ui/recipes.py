@@ -4,6 +4,7 @@ from __future__ import annotations
 import streamlit as st
 
 from lib.recipes import Recipe, calculate_recipe_cost
+from ui.add_recipe import page_add
 from ui.common import md, recipes_cached, render_gt_header, render_recipe
 from ui.replacer import page_experimental_replacer
 
@@ -16,10 +17,14 @@ def page_cheap() -> None:
 
 
 def page_recipes() -> None:
-    """Render the main Recipes page with catalog browsing and the Experimental Replacer."""
+    """Render the main Recipes page with catalog browsing, the Experimental Replacer, and Add a Recipe."""
     render_gt_header("recipes")
     st.title("Low-Histamine Recipe Collection")
-    tab_browse, tab_replacer = st.tabs(["🥣 Browse Recipes (Basic & Advanced)", "🧪 Experimental Replacer"])
+    tab_browse, tab_replacer, tab_add = st.tabs([
+        "🥣 Browse Recipes",
+        "🧪 Experimental Replacer",
+        "➕ Add a Recipe",
+    ])
 
     with tab_browse:
         recipes, problems = recipes_cached()
@@ -29,7 +34,7 @@ def page_recipes() -> None:
                     st.markdown(f"**{fname}**")
                     st.markdown("\n".join(f"- {e}" for e in errs))
         if not recipes:
-            st.write("No recipes yet. Add one on the Add a Recipe page.")
+            st.write("No recipes yet. Add one on the Add a Recipe tab.")
         else:
             st.write(
                 "Costs per serving are dynamically calculated from canonical ingredient costs and quantities. "
@@ -98,3 +103,6 @@ def page_recipes() -> None:
 
     with tab_replacer:
         page_experimental_replacer()
+
+    with tab_add:
+        page_add(embedded=True)

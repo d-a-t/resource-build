@@ -67,6 +67,23 @@ def page_home() -> None:
         st.markdown(
             "#### 🥣 Student Cooking & Advocacy\n"
             "- [**Cheap Cooking**](/cheap-cooking): Student budget staples, Atlanta grocery transit (Stinger Gold Route to Atlantic Station Publix), and dorm batch freezing.\n"
-            "- [**Recipes Catalog**](/recipes): Low-histamine recipes categorized into **Basic** (starter/dorm) and **Advanced** (experimental replacer) with dynamic costs.\n"
+            "- [**Recipes Catalog**](/recipes): Low-histamine recipes categorized into **Basic** and **Advanced**, plus an interactive **Add a Recipe** builder tab.\n"
             "- [**Checklists & Script**](/checklists): Printable grocery checklist, safe meal-prep rules, and copyable script for Tech Dining workers and roommates."
         )
+
+    st.markdown("---")
+    st.header("♿ Accessibility Conformance Statement")
+    st.write(
+        "**Conformance Target:** Web Content Accessibility Guidelines (WCAG) 2.1 Level AAA  \n"
+        "**Scope:** All toolkit pages, daily dining menu analyzers, recipe catalog, and interactive ingredient tools.  \n\n"
+        "**Conformance Measures:**\n"
+        "- **Contrast & Typography:** Text and interactive indicators maintain contrast ratios exceeding 7.0:1 (AAA standard).\n"
+        "- **Visual Distinction:** Information is never conveyed through color alone; every indicator combines explicit text labels with symbols (`🟢`, `🟡`, `🔴`, `🟣`).\n"
+        "- **Keyboard Operability:** Complete keyboard navigability with visible focus outlines (`:focus-visible`) and a skip-to-main-content bypass mechanism.\n"
+        "- **Structure & Semantics:** Programmatic heading hierarchy (`h1` $\\rightarrow$ `h2` $\\rightarrow$ `h3`), semantic table column headers (`scope='col'`), and screen reader ARIA landmarks.\n"
+        "- **Credits & Engineering:** Developed with assistance from **Gemini** (Google DeepMind) for WCAG 2.1 Level AAA contrast auditing and accessibility semantics, alongside open source libraries (Streamlit, PyYAML).\n\n"
+        "For accommodation inquiries or to report accessibility barriers, contact Georgia Tech's "
+        "**Office of Disability Services** (Smithgall Student Services Building, Suite 220)."
+    )
+    st.page_link("credits", label="View Credits & Open Source Acknowledgments", icon="🙏")
+

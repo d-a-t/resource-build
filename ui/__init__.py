@@ -10,6 +10,7 @@ from ui.replacer import page_experimental_replacer, page_advanced_recipes
 from ui.plan import page_plan
 from ui.checklists import page_checklists
 from ui.add_recipe import page_add
+from ui.credits import page_credits
 from ui.resources import page_resources
 
 __all__ = [
@@ -22,6 +23,7 @@ __all__ = [
     "page_advanced_recipes",
     "page_cheap",
     "page_checklists",
+    "page_credits",
     "page_dining",
     "page_experimental_replacer",
     "page_food",

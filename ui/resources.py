@@ -11,4 +11,9 @@ def page_resources() -> None:
     render_gt_header("resources")
     st.title("Campus Resources & Scholarly Literature")
     md("resources.md")
+    st.markdown("---")
+    st.info(
+        "Looking for project credits, open source libraries, and AI engineering acknowledgments? "
+        "Visit the dedicated [Credits page](/credits)."
+    )
     disclaimer()

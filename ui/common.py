@@ -12,7 +12,7 @@ from lib.content import FOOD_GROUP_COLORS, STATUS_COLORS, match_ingredient_to_fo
 from lib.recipes import Recipe, calculate_recipe_cost, load_all
 
 ROOT = Path(__file__).resolve().parent.parent
-TITLE = "Georgia Tech Student Low-Histamine & Dining Toolkit"
+TITLE = "College Low-Histamine & Dining Toolkit"
 GT_NAVY = "#003057"
 GT_GOLD = "#B3A369"
 GT_BUZZ_GOLD = "#EAAA00"
@@ -168,12 +168,9 @@ def render_gt_header(current_page: str = "") -> None:
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
                 <div>
                     <h1 class="gt-masthead-title">
-                        <span aria-hidden="true">🐝</span> Georgia Tech Student Low-Histamine & Dining Toolkit
+                        Georgia Tech Low-Histamine & Dining Toolkit
                     </h1>
-                    <p class="gt-masthead-sub">
-                        <span class="gt-pill-gold">Yellow Jackets</span>
-                        Campus Dining (Brittain, North Ave, West Village) • Dorm Cooking • Student Budgeting • Disability Access
-                    </p>
+
                 </div>
             </div>
         </header>

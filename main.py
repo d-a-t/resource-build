@@ -19,6 +19,7 @@ from ui import (
     page_advanced_recipes,
     page_cheap,
     page_checklists,
+    page_credits,
     page_dining,
     page_experimental_replacer,
     page_food,
@@ -40,6 +41,8 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+page_credits_obj = st.Page(page_credits, title="Credits", icon="🙏", url_path="credits")
+
 # Georgia Tech Student Navigation Sidebar & Accessibility Hub
 with st.sidebar:
     st.markdown(
@@ -49,10 +52,7 @@ with st.sidebar:
                     border-left: 5px solid #b3a369; padding: 14px 16px; border-radius: 6px;
                     margin-bottom: 16px; color: #ffffff; box-shadow: 0 2px 6px rgba(0,48,87,0.2);">
             <div style="font-weight: 800; font-size: 1.05rem; color: #ffffff; display: flex; align-items: center; gap: 8px;">
-                <span aria-hidden="true">🐝</span> GT Yellow Jacket Hub
-            </div>
-            <div style="font-size: 0.82rem; color: #f1f5f9; margin-top: 5px; line-height: 1.4;">
-                Low-histamine nutrition toolkit for Georgia Tech dining halls, dorm life, and disability advocacy.
+                <span aria-hidden="true">🐝</span> Georgia Tech Hub
             </div>
         </div>
         """,
@@ -87,8 +87,8 @@ pages = [
     st.Page(page_recipes, title="Recipes", icon="🥣", url_path="recipes"),
     st.Page(page_plan, title="Meal Plan", icon="📅", url_path="meal-plan"),
     st.Page(page_checklists, title="Checklists & Script", icon="✅", url_path="checklists"),
-    st.Page(page_add, title="Add a Recipe", icon="➕", url_path="add-recipe"),
     st.Page(page_resources, title="Resources", icon="📚", url_path="resources"),
+    page_credits_obj,
 ]
 
 st.navigation(pages).run()
